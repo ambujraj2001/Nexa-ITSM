@@ -204,7 +204,8 @@ export function AssistantPage() {
   const endRef = useRef<HTMLDivElement>(null);
   // Logo / "ITSM" breadcrumb → a fresh welcome screen; the previous chat is kept.
   const location = useLocation();
-  const [welcome, setWelcome] = useState(false);
+  // Every visit opens on the welcome screen; the last chat is one click away.
+  const [welcome, setWelcome] = useState(true);
   // First message from the welcome screen: show it immediately while the conversation is created.
   const [pendingFirst, setPendingFirst] = useState<Message | null>(null);
   useEffect(() => {
@@ -395,6 +396,11 @@ export function AssistantPage() {
             </button>
           ))}
         </div>
+          {welcome && (conversation.data?.messages.length ?? 0) > 0 && (
+            <button type="button" onClick={() => setWelcome(false)} className="mt-space-md inline-flex items-center gap-1 font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface">
+              <Icon name="history" className="text-[16px]" /> Continue previous conversation
+            </button>
+          )}
           <div className="mt-space-xl w-full">
             {conversation.isLoading && <LoadingState label="Loading your conversation…" />}
             {conversation.isError && <ErrorState title="Unable to load the assistant." message={errorMessage(conversation.error)} onRetry={() => void conversation.refetch()} />}
