@@ -612,6 +612,7 @@ function EscalationSection() {
 
 // ── Why Nexa: comparison ─────────────────────────────────────────────────────
 
+const SERVICENOW_LOGO = "https://upload.wikimedia.org/wikipedia/commons/5/57/ServiceNow_logo.svg";
 const SALESFORCE_LOGO = "https://cdn.jsdelivr.net/npm/simple-icons@15/icons/salesforce.svg";
 
 const COMPARISON: { label: string; nexa: string; servicenow: string; salesforce: string }[] = [
@@ -678,7 +679,7 @@ function ComparisonSection() {
                     </div>
                   </th>
                   <th className="w-[26%] p-5 align-bottom">
-                    <span className="font-headline-sm text-headline-sm font-semibold tracking-tight text-[#293e40]">servicenow</span>
+                    <img src={SERVICENOW_LOGO} alt="ServiceNow" className="h-6 w-auto" />
                   </th>
                   <th className="w-[26%] p-5 align-bottom">
                     <span className="inline-flex items-center gap-2">
