@@ -28,14 +28,13 @@ services:
         sync: false
       - key: SUPABASE_DB_URL
         sync: false
-      - key: LITELLM_BASE_URL
-        sync: false
-      - key: LITELLM_API_KEY
+      # Models: DeepSeek Flash, called directly (no LiteLLM proxy in production).
+      - key: DEEPSEEK_API_KEY
         sync: false
       - key: NEXA_MODEL_FAST
-        value: open-fast
+        value: deepseek/deepseek-flash
       - key: NEXA_MODEL_STRONG
-        value: open-fast
+        value: deepseek/deepseek-flash
       - key: NEXA_MODEL_EMBEDDING
         value: mistral/mistral-embed
       - key: MISTRAL_API_KEY
