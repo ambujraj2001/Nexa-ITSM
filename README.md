@@ -175,8 +175,10 @@ pipeline.
 | Employee | `elena.rostova@example.com` | `Nexa-2v0XhNqra0XMm7!9` |
 | Engineer (L1 Network) | `rahul.sharma@example.com` | `Nexa-2v0XhNqra0XMm7!9` |
 | Admin | `jordan.blake@example.com` | `Nexa-2v0XhNqra0XMm7!9` |
+| Engineer (L1 IT Support) | `engineer@example.com` | `engineer` |
+| Admin | `admin@example.com` | `admin1` |
 
-All seeded demo accounts share this password.
+The seeded demo accounts share one password; `engineer@example.com` and `admin@example.com` have their own.
 
 Sign in as `elena.rostova@example.com` (employee) to try the assistant,
 `rahul.sharma@example.com` (L1 Network) for dispatch, `daniel.okafor@example.com` (L2
