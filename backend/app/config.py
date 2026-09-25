@@ -69,6 +69,8 @@ class Settings(BaseSettings):
     nexa_model_embedding: str = ""
     # Direct provider key for embeddings named "mistral/<model>" (bypasses the LiteLLM proxy).
     mistral_api_key: SecretStr = SecretStr("")
+    # Direct provider key for models named "deepseek/<model>" (bypasses the LiteLLM proxy).
+    deepseek_api_key: SecretStr = SecretStr("")
     nexa_model_fallbacks: str = ""
     nexa_model_triage: str = ""
     nexa_model_assistant: str = ""

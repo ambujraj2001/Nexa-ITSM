@@ -431,7 +431,14 @@ class ConversationService(Service):
                 if t.escalation_count:
                     parts.append("It was escalated to a specialist (L2) team, which can take longer.")
                 parts.append(f"It's {t.priority} ({PRIORITY_LABELS[t.priority].lower()} priority); the target is {snap.label.replace(' left', '')} from now." if snap.remaining_seconds and snap.remaining_seconds > 0 else f"It's {t.priority} priority and past its target time — it's been flagged to the team.")
-            sentences.append(" ".join(parts))
+            if len(chosen) == 1 and status not in DONE_STATUSES and re.search(r"\b(meanwhile|in the meantime|workaround|try|self[- ]help)\b", question, re.IGNORECASE):
+                # "What can I try meanwhile?" → self-help from the knowledge base for this ticket's problem.
+                from types import SimpleNamespace
+                history = await self._history(conversation)
+                replies = await self._knowledge_reply(conversation, question, history, SimpleNamespace(knowledge_query=f"{t.title}. {truncate(t.description, 300)} workaround self-help"))
+                return replies[-1]
+            focused = self._focused_answer(question, t, status, assignee, team, done, total, snap, questions.get(t.id)) if len(chosen) == 1 else None
+            sentences.append(focused or " ".join(parts))
             cards.append(
                 {
                     "ticket_id": str(t.id), "ticket_number": t.ticket_number, "title": t.title, "status": t.status,
@@ -442,6 +449,30 @@ class ConversationService(Service):
                 }
             )
         return await self._say(conversation, "\n\n".join(sentences), "ticket_status", {"tickets": cards, "suggestions": STATUS_FOLLOW_UPS})
+
+    @staticmethod
+    def _focused_answer(question: str, t: Ticket, status: TicketStatus, assignee: Any, team: Any, done: int, total: int, snap: Any, pending_q: Any) -> str | None:
+        """Answer the specific thing asked (when / who / what's needed / steps) from database facts."""
+        q = question.lower()
+        who = (f"{assignee.name}" + (f" from {team.name}" if team else "")) if assignee else (f"the {team.name} team" if team else "the IT team")
+        if status in DONE_STATUSES:
+            return None
+        if re.search(r"\b(when|how long|eta|expect|timeline|fixed by|resolved by|deadline)\b", q):
+            target = (f"The target is to resolve it within {snap.label.replace(' left', '')} ({t.priority}, {PRIORITY_LABELS[t.priority].lower()} priority)."
+                      if snap.remaining_seconds and snap.remaining_seconds > 0 else f"It's past its {t.priority} target time, so it's been flagged to the team.")
+            progress = f" {who} has completed {done} of {total} resolution steps so far." if total else f" {who} is working on it."
+            return f"I can't promise an exact time, but for {t.ticket_number}: {target}{progress} I'll let you know here if anything is needed from you."
+        if re.search(r"\b(steps?|progress|how far)\b", q):
+            if not total:
+                return f"{who} hasn't set out resolution steps for {t.ticket_number} yet."
+            return f"{who} has completed {done} of {total} resolution steps on {t.ticket_number}. The steps themselves are the engineer's technical checklist — you'll hear from them here if they need anything from you."
+        if re.search(r"\b(who|handling|assigned|working on)\b", q):
+            return f"{who} is handling {t.ticket_number}." + (" You can reply here and I'll pass it on." if assignee else "")
+        if re.search(r"\b(need|anything i|do i|should i|from me)\b", q):
+            if status == TicketStatus.PENDING_USER:
+                return f"Yes — {who} is waiting on you for {t.ticket_number}: “{truncate(pending_q.content, 200)}”. Reply here and I'll add it to the ticket." if pending_q else f"Yes — {who} is waiting on a reply from you for {t.ticket_number}. Reply here and I'll add it."
+            return f"Nothing is needed from you right now for {t.ticket_number}. {who} will reach out here if they need anything."
+        return None
 
     async def _act_on_decision(
         self, conversation: Conversation, content: str, decision: AssistantDecision, ctx: ToolContext,

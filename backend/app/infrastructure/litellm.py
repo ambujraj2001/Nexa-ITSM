@@ -54,7 +54,15 @@ class ModelConfig:
             kwargs["api_base"] = self.api_base
         if self.api_key:
             kwargs["api_key"] = self.api_key
+        kwargs.update(self.provider_params())
         return kwargs
+
+    def provider_params(self) -> dict[str, Any]:
+        # DeepSeek's thinking mode rejects forced tool calls (used for structured output),
+        # and Nexa never shows reasoning anyway — so turn it off.
+        if self.litellm_model.startswith("deepseek/"):
+            return {"extra_body": {"thinking": {"type": "disabled"}}}
+        return {}
 
 
 @dataclass(frozen=True)
@@ -137,6 +145,9 @@ class ModelRouter:
         return alias
 
     def _config_for_alias(self, task: str, alias: str) -> ModelConfig:
+        # "deepseek/<model>" goes straight to DeepSeek with DEEPSEEK_API_KEY.
+        if alias.startswith("deepseek/") and self._settings.deepseek_api_key.get_secret_value():
+            return ModelConfig(task=task, alias=alias, litellm_model=alias, api_base=None, api_key=self._settings.deepseek_api_key.get_secret_value())
         proxy = bool(self._settings.litellm_base_url)
         return ModelConfig(
             task=task,
@@ -189,7 +200,7 @@ class ModelRouter:
             max_tokens=max_tokens,
             request_timeout=self._settings.llm_timeout_seconds,
             max_retries=1,
-            model_kwargs={"metadata": {"nexa_task": task}},
+            model_kwargs={"metadata": {"nexa_task": task}, **config.provider_params()},
         )
 
     # ── Direct completions ───────────────────────────────────────────────
