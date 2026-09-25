@@ -1,0 +1,54 @@
+# Render Blueprint — Nexa API (FastAPI). New → Blueprint → pick this repo.
+# Secrets are `sync: false`: Render asks you for each value on first deploy.
+services:
+  - type: web
+    name: nexa-api
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: pip install uv && uv sync --frozen --no-dev
+    startCommand: uv run --no-dev uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.7"
+      - key: APP_ENV
+        value: production
+      - key: LOG_LEVEL
+        value: INFO
+      - key: FRONTEND_URL          # your Vercel URL, e.g. https://nexa-itsm.vercel.app
+        sync: false
+      - key: BACKEND_URL           # this service's URL, e.g. https://nexa-api.onrender.com
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: SUPABASE_DB_URL
+        sync: false
+      - key: LITELLM_BASE_URL
+        sync: false
+      - key: LITELLM_API_KEY
+        sync: false
+      - key: NEXA_MODEL_FAST
+        value: open-fast
+      - key: NEXA_MODEL_STRONG
+        value: open-fast
+      - key: NEXA_MODEL_EMBEDDING
+        value: mistral/mistral-embed
+      - key: MISTRAL_API_KEY
+        sync: false
+      - key: UPSTASH_REDIS_REST_URL
+        sync: false
+      - key: UPSTASH_REDIS_REST_TOKEN
+        sync: false
+      - key: AXIOM_TOKEN
+        sync: false
+      - key: AXIOM_DATASET
+        value: nexa
+      - key: AXIOM_DOMAIN
+        value: api.axiom.co
+      - key: OTEL_SERVICE_NAME
+        value: nexa-backend
