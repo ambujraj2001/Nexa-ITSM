@@ -1,0 +1,15 @@
+# Local config — keep .env out of git (it holds your project's values).
+.env
+.env.*
+!.env.example
+
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+.vite/
+
+.DS_Store
+.idea/
+.vscode/
+*.log

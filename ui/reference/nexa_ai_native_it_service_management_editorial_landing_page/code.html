@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "background": "#f8f9ff", "on-surface": "#0b1c30", "on-secondary-container": "#fffbff", "outline-variant": "#c6c6cd", "error": "#ba1a1a", "surface-variant": "#d3e4fe", "error-container": "#ffdad6", "on-tertiary-fixed": "#002114", "tertiary-fixed-dim": "#68dba9", "primary-fixed": "#dae2fd", "on-primary-container": "#7c839b", "on-background": "#0b1c30", "on-tertiary-fixed-variant": "#005137", "secondary": "#4648d4", "primary": "#000000", "primary-fixed-dim": "#bec6e0", "secondary-fixed-dim": "#c0c1ff", "on-primary": "#ffffff", "inverse-surface": "#213145", "surface-tint": "#565e74", "tertiary-fixed": "#85f8c4", "tertiary": "#000000", "surface-container-highest": "#d3e4fe", "surface": "#f8f9ff", "tertiary-container": "#002114", "surface-container-lowest": "#ffffff", "inverse-on-surface": "#eaf1ff", "outline": "#76777d", "on-primary-fixed": "#131b2e", "surface-container-high": "#dce9ff", "secondary-container": "#6063ee", "on-secondary-fixed": "#07006c", "inverse-primary": "#bec6e0", "primary-container": "#131b2e", "surface-bright": "#f8f9ff", "on-primary-fixed-variant": "#3f465c", "on-error-container": "#93000a", "secondary-fixed": "#e1e0ff", "surface-dim": "#cbdbf5", "on-surface-variant": "#45464d", "on-tertiary-container": "#069669", "on-secondary": "#ffffff", "on-error": "#ffffff", "on-tertiary": "#ffffff", "surface-container-low": "#eff4ff", "on-secondary-fixed-variant": "#2f2ebe", "surface-container": "#e5eeff" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "gutter": "1rem", "space-md": "0.75rem", "margin": "1.5rem", "space-lg": "1.25rem", "space-xl": "2rem", "space-sm": "0.5rem", "space-xs": "0.25rem" }, "fontFamily": { "body-sm": [ "Geist" ], "body-lg": [ "Geist" ], "label-code": [ "JetBrains Mono" ], "body-md": [ "Geist" ], "label-caps": [ "Geist" ], "headline-sm": [ "Geist" ], "display-lg": [ "Geist" ], "headline-md": [ "Geist" ], "headline-lg": [ "Geist" ] }, "fontSize": { "body-sm": [ "12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "400" } ], "body-lg": [ "15px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "400" } ], "label-code": [ "12px", { "lineHeight": "16px", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "body-md": [ "13px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" } ], "label-caps": [ "11px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" } ], "headline-sm": [ "16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "500" } ], "display-lg": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.025em", "fontWeight": "600" } ], "headline-md": [ "20px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "500" } ], "headline-lg": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" } ] } } } };</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 max-w-7xl mx-auto px-margin flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-md"><img alt="Brand logo. - Primary color: #0f172a
+- Font: geist
+- Mode: light
+- Roundness: rounded-sm
+" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSiw7_-tLTlvqvckXED9DhGA457pTl9iGhdDRus8CRYuU_IzPRYSjID27keiKUCSKmtaIWcaEO8nW6W_1kvlXrv_kSZiPDq_Y7NeguJomHkporPDfC-N9EEQNR-ak3x9h_gV1meaffcrWbie4Vah58KHQzMLRu1UG0CyCXxxPK52VGmcUkevwlzx-AkG1iBspJLRtXKU-TvIErByr1m2C0HDp9b4zU1fLlwEJCHvr-rql-19piRn4b"/><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface font-semibold">Nexa</span><span class="font-label-caps text-label-caps uppercase bg-surface-container-high text-on-surface-variant px-space-xs py-0.5 rounded-DEFAULT tracking-wider">AI ITSM</span></div></div><nav class="hidden md:flex items-center gap-space-lg" data-active-classes="text-on-surface font-medium"><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="product" href="#">Product</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="how-it-works" href="#">How it works</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="solutions" href="#">Solutions</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="resources" href="#">Resources</a></nav><div class="flex items-center gap-space-md"><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors px-space-sm py-1.5" data-path="login" href="#">Sign in</a><a class="font-body-md text-body-md bg-primary text-on-primary hover:bg-primary-container hover:text-on-primary px-space-md py-1.5 rounded-lg transition-colors inline-flex items-center justify-center font-medium" data-path="get-started" href="#">Get started</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-16rem)]"><div class="flex flex-col w-full">
+<!-- SECTION 1: EDITORIAL HERO -->
+<section class="relative w-full pt-12 pb-24 lg:pt-16 lg:pb-32 px-margin overflow-hidden">
+<!-- Ambient background gradient -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[600px] bg-gradient-to-b from-surface-variant/40 via-surface-container-low/20 to-transparent blur-3xl -z-10 pointer-events-none"></div>
+<div class="max-w-7xl mx-auto flex flex-col items-start">
+<!-- Eyebrow -->
+<div class="inline-flex items-center gap-space-xs mb-space-lg">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant font-semibold">AI-Native IT Service Management</span>
+</div>
+<!-- Main Headline - Editorial Scale -->
+<h1 class="font-display-lg text-[48px] sm:text-[68px] lg:text-[96px] leading-[0.92] tracking-[-0.035em] text-on-surface font-semibold max-w-6xl mb-space-lg">
+<span>IT SUPPORT THAT UNDERSTANDS THE PROBLEM.</span>
+<span class="block text-on-surface-variant/80 mt-2 sm:mt-4">BEFORE YOUR TEAM TOUCHES IT.</span>
+</h1>
+<!-- Subtitle & Philosophy Statement -->
+<div class="flex flex-col md:flex-row md:items-baseline justify-between w-full gap-space-lg pb-space-xl border-b border-surface-container-high/60">
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed">
+          Nexa investigates IT issues, understands deep infrastructure context, generates a verified resolution plan, and directs it instantly to the right engineer.
+        </p>
+<div class="flex flex-col items-start md:items-end gap-space-xs">
+<span class="font-label-code text-label-code text-secondary uppercase tracking-widest font-medium">Core Axiom</span>
+<span class="font-headline-md text-headline-md text-on-surface font-medium">AI investigates. Humans resolve.</span>
+</div>
+</div>
+<!-- CTA Row -->
+<div class="flex flex-wrap items-center gap-space-md pt-space-xl mb-20">
+<a class="h-11 px-space-xl bg-primary text-on-primary hover:bg-primary-container hover:text-on-primary transition-all duration-150 rounded-lg font-body-md text-body-md font-medium inline-flex items-center gap-space-xs shadow-sm hover:shadow" data-path="get-started" href="#">
+<span>Get started</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+<a class="h-11 px-space-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container-low transition-colors duration-150 rounded-lg font-body-md text-body-md font-medium inline-flex items-center gap-space-xs shadow-sm" data-path="login" href="#">
+<span>Sign in</span>
+</a>
+<span class="font-label-code text-label-code text-on-surface-variant/70 ml-space-sm hidden sm:inline-block">Production-grade agentic pipeline · Zero black-box mutations</span>
+</div>
+<!-- HERO PRODUCT VISUAL: Floating Agentic Incident Journey -->
+<div class="w-full relative mt-4">
+<!-- Floating Backdrop Canvas -->
+<div class="w-full rounded-2xl bg-surface-container-lowest shadow-[0_4px_32px_rgba(11,28,48,0.06)] p-6 sm:p-10 lg:p-12 relative overflow-hidden">
+<!-- Subtle Top Control Bar -->
+<div class="flex flex-wrap items-center justify-between gap-space-md pb-8 border-b border-surface-container-high/70">
+<div class="flex items-center gap-space-md">
+<span class="font-label-code text-label-code font-semibold px-2 py-0.5 rounded-DEFAULT bg-surface-container text-on-surface">INC-8492</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Auth0 SSO Gateway / GlobalProtect Mesh</span>
+</div>
+<div class="flex items-center gap-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-DEFAULT bg-error-container/60 text-error font-label-code text-label-code font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                P2 Elevated
+              </span>
+<span class="font-label-code text-label-code text-on-surface-variant hidden sm:inline">T+14s to plan</span>
+</div>
+</div>
+<!-- Staggered Incident Pipeline Nodes -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-10">
+<!-- Left Column: User Input & Initial Signal -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<div>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant font-semibold block mb-3">01 · Employee Signal</span>
+<div class="p-4 rounded-xl bg-surface-container-low shadow-sm">
+<div class="flex items-center gap-2 mb-2">
+<div class="w-5 h-5 rounded-full bg-surface-container-highest flex items-center justify-center font-label-code text-[10px] text-on-surface font-medium">EK</div>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Elena Rostova</span>
+<span class="font-label-code text-[11px] text-on-surface-variant ml-auto">09:14 AM</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface font-normal">
+                    "My VPN stopped working this morning right after the morning auth prompt. Can't reach the staging clusters."
+                  </p>
+</div>
+</div>
+<!-- AI Synthesizer Node -->
+<div class="relative pl-6 before:content-[''] before:absolute before:left-2 before:top-0 before:bottom-0 before:w-[2px] before:bg-secondary/20">
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-secondary font-semibold block mb-2">02 · Agentic Intercept</span>
+<div class="p-3.5 rounded-lg bg-surface-container-high/40 text-on-surface font-body-sm text-body-sm leading-relaxed">
+<div class="flex items-center gap-1.5 mb-1.5 text-secondary font-medium">
+<span class="material-symbols-outlined text-[16px]">auto_awesome</span>
+<span>Nexa Agent Analysis</span>
+</div>
+                  "Identified recurring pattern with GP-CERT-2024 rotation. No manual triage required."
+                </div>
+</div>
+</div>
+<!-- Middle Column: AI Investigation & Hypothesis -->
+<div class="lg:col-span-4 flex flex-col gap-4">
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant font-semibold">03 · Structural Diagnosis</span>
+<div class="p-5 rounded-xl bg-surface-container-low/60 flex flex-col gap-4">
+<div class="flex items-center justify-between pb-3 border-b border-surface-container-high">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Inferred Service</span>
+<span class="font-label-code text-label-code text-on-surface font-medium">CorpNet / Palo Alto VPN</span>
+</div>
+<div class="flex items-center justify-between pb-3 border-b border-surface-container-high">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Hypothesis</span>
+<span class="font-body-sm text-body-sm text-error font-medium text-right">Root Cert Expiration (macOS Keychain)</span>
+</div>
+<div class="flex flex-col gap-1.5 pt-1">
+<span class="font-label-caps text-[10px] uppercase tracking-wider text-on-surface-variant">Telemetry Corroboration</span>
+<div class="font-label-code text-[11px] p-2.5 rounded bg-surface-container-highest text-on-surface leading-tight font-mono">
+                    AUTH_ERR_604: TLS_V1_CERT_UNTRUSTED<br/>
+                    Issuer: "Nexa Internal Intermediate G2"<br/>
+                    Expired: 2025-05-18T00:00:00Z
+                  </div>
+</div>
+<div class="flex items-center gap-2 pt-1">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+<span class="font-label-code text-label-code text-on-surface-variant">Confidence Score: <strong class="text-on-surface">94.8%</strong></span>
+</div>
+</div>
+</div>
+<!-- Right Column: Resolution Plan & Assigned Engineer -->
+<div class="lg:col-span-4 flex flex-col gap-4">
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant font-semibold">04 · Execution Plan &amp; Dispatch</span>
+<!-- Stepped Plan -->
+<div class="p-5 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-3">
+<span class="font-label-code text-label-code font-semibold text-on-surface">Generated Plan #71</span>
+<div class="flex flex-col gap-2">
+<div class="flex items-start gap-2 text-on-surface font-body-sm text-body-sm">
+<span class="font-label-code text-label-code text-secondary font-semibold pt-0.5">01</span>
+<span>Verify client cert timestamp in System.keychain</span>
+</div>
+<div class="flex items-start gap-2 text-on-surface font-body-sm text-body-sm">
+<span class="font-label-code text-label-code text-secondary font-semibold pt-0.5">02</span>
+<span>Inspect Okta SSO radius auth sync status</span>
+</div>
+<div class="flex items-start gap-2 text-on-surface font-body-sm text-body-sm">
+<span class="font-label-code text-label-code text-secondary font-semibold pt-0.5">03</span>
+<span>Trigger MDM payload push for G3 Root CA</span>
+</div>
+<div class="flex items-start gap-2 text-on-surface font-body-sm text-body-sm">
+<span class="font-label-code text-label-code text-secondary font-semibold pt-0.5">04</span>
+<span>Re-verify tunnel handshake from telemetry</span>
+</div>
+</div>
+<!-- Assignment Metadata Box -->
+<div class="mt-3 pt-3 border-t border-surface-container-high flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-label-code text-xs font-semibold">RS</div>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface font-medium leading-tight">Rahul Sharma</span>
+<span class="font-label-code text-[11px] text-on-surface-variant leading-none">NetOps Tier 2</span>
+</div>
+</div>
+<span class="font-label-caps text-label-caps px-2 py-0.5 rounded bg-tertiary-container text-on-tertiary-container font-semibold">Ready to run</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: THE BIG IDEA (Minimal Editorial Typography) -->
+<section class="w-full py-28 lg:py-36 px-margin bg-surface-container-low/40">
+<div class="max-w-5xl mx-auto flex flex-col gap-space-lg">
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-secondary font-semibold">The Shift in IT Operation</span>
+<h2 class="font-display-lg text-[40px] sm:text-[56px] lg:text-[76px] leading-[0.98] tracking-[-0.03em] text-on-surface font-semibold">
+        IT SUPPORT SHOULDN'T START WITH A TICKET.
+      </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-xl pt-space-lg">
+<p class="font-body-lg text-body-lg text-on-surface leading-relaxed font-normal">
+          Employees know what is broken. They don't know which category to choose, which severity level applies, or which internal silo owns the infrastructure. They shouldn't have to.
+        </p>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          Nexa eliminates the form. People describe reality in natural language. Nexa ingests the incident, reconstructs the underlying context from services and logs, forms a plan, and hands it directly to an engineer ready to execute.
+        </p>
+</div>
+</div>
+</section>
+<!-- SECTION 3: THE NEW FLOW (Horizontal Visual Progression) -->
+<section class="w-full py-28 px-margin">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-space-md">
+<div>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant font-semibold block mb-2">Predictable Trajectory</span>
+<h2 class="font-headline-lg text-[28px] sm:text-[36px] tracking-tight text-on-surface font-semibold">FROM 'SOMETHING IS BROKEN' TO A CLEAR PLAN.</h2>
+</div>
+<span class="font-label-code text-label-code text-on-surface-variant">Deterministic progression · Mean time to triage: &lt; 8 seconds</span>
+</div>
+<!-- 4 Stages Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Stage 1 -->
+<div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between h-72">
+<div class="flex flex-col">
+<span class="font-display-lg text-display-lg text-on-surface font-semibold mb-space-sm">01</span>
+<span class="font-label-caps text-label-caps uppercase text-secondary font-semibold mb-space-xs">Understand</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold mb-space-xs">Natural Input</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              "My VPN stopped working." No forced drop-down classifications or obscure component pickers.
+            </p>
+</div>
+<div class="pt-4 border-t border-surface-container-high/60">
+<span class="font-label-code text-label-code text-on-surface-variant/80">Input channel: Slack / Web</span>
+</div>
+</div>
+<!-- Stage 2 -->
+<div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between h-72">
+<div class="flex flex-col">
+<span class="font-display-lg text-display-lg text-on-surface font-semibold mb-space-sm">02</span>
+<span class="font-label-caps text-label-caps uppercase text-secondary font-semibold mb-space-xs">Investigate</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold mb-space-xs">Context Synthesis</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              AI automatically queries internal runbooks, Jira history, telemetry, and live identity provider status.
+            </p>
+</div>
+<div class="pt-4 border-t border-surface-container-high/60">
+<span class="font-label-code text-label-code text-on-surface-variant/80">14 data sources mapped</span>
+</div>
+</div>
+<!-- Stage 3 -->
+<div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between h-72">
+<div class="flex flex-col">
+<span class="font-display-lg text-display-lg text-on-surface font-semibold mb-space-sm">03</span>
+<span class="font-label-caps text-label-caps uppercase text-secondary font-semibold mb-space-xs">Diagnose</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold mb-space-xs">Probable Cause</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Hypothesis generated: "Client authentication cert invalid after G2 renewal." Validated against logs.
+            </p>
+</div>
+<div class="pt-4 border-t border-surface-container-high/60">
+<span class="font-label-code text-label-code text-on-surface-variant/80">Diagnostic certainty: High</span>
+</div>
+</div>
+<!-- Stage 4 -->
+<div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between h-72">
+<div class="flex flex-col">
+<span class="font-display-lg text-display-lg text-on-surface font-semibold mb-space-sm">04</span>
+<span class="font-label-caps text-label-caps uppercase text-secondary font-semibold mb-space-xs">Route</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold mb-space-xs">Surgical Assignment</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Targeted to Rahul Sharma (Network Support). Dispatched with ready-to-execute step checklist.
+            </p>
+</div>
+<div class="pt-4 border-t border-surface-container-high/60">
+<span class="font-label-code text-label-code text-on-surface-variant/80">Zero bounced handoffs</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 4: EMPLOYEE EXPERIENCE (Asymmetric Layout) -->
+<section class="w-full py-24 px-margin bg-surface-container-lowest">
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+<!-- Text Narrative -->
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-secondary font-semibold">User Experience</span>
+<h2 class="font-display-lg text-[36px] sm:text-[48px] leading-[1] tracking-tight text-on-surface font-semibold">
+          JUST TELL IT WHAT'S WRONG.
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          No mandatory 12-field request forms. No browsing 40 nested categories like "Infrastructure &gt; Network &gt; Edge &gt; Remote Access". No guessing which regional team handles the outage.
+        </p>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Employees simply speak plainly in the tools they live in. Nexa acts as a high-empathy, hyper-competent bridge between user frustration and operational resolution.
+        </p>
+<div class="pt-2">
+<div class="inline-flex items-center gap-2 font-label-code text-label-code text-on-surface">
+<span class="w-2 h-2 rounded-full bg-tertiary-container"></span>
+            Zero user training required for day-1 rollouts
+          </div>
+</div>
+</div>
+<!-- Floating Employee Assistant Preview -->
+<div class="lg:col-span-7">
+<div class="p-6 sm:p-8 rounded-2xl bg-surface-container-low shadow-[0_4px_24px_rgba(11,28,48,0.04)] flex flex-col gap-6">
+<div class="flex items-center justify-between pb-4 border-b border-surface-container-high">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-secondary"></span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Nexa Assistant</span>
+</div>
+<span class="font-label-code text-label-code text-on-surface-variant">Active Workspace</span>
+</div>
+<!-- Conversational Stream -->
+<div class="flex flex-col gap-4">
+<!-- User Prompt -->
+<div class="self-end max-w-md p-4 rounded-xl rounded-tr-xs bg-primary text-on-primary font-body-md text-body-md">
+              "Hey, I cannot pull from the internal Git registry. Getting 403 Forbidden since noon."
+            </div>
+<!-- AI Response -->
+<div class="self-start max-w-lg p-4 rounded-xl rounded-tl-xs bg-surface-container-lowest shadow-sm flex flex-col gap-2">
+<div class="flex items-center gap-1.5 text-secondary font-label-caps text-label-caps uppercase">
+<span class="material-symbols-outlined text-[14px]">auto_awesome</span>
+<span>Nexa Synthesis</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface">
+                I looked into your account. The GitHub Enterprise SSH key expired at 11:30 AM following the 90-day rotation cycle.
+              </p>
+<div class="p-2.5 rounded bg-surface-container-low text-on-surface-variant font-label-code text-[11px]">
+                Target: github.corp.internal · User: marcus.v · Action required: Token re-issue
+              </div>
+</div>
+</div>
+<!-- Suggested Quick Prompts -->
+<div class="flex flex-col gap-2 pt-2">
+<span class="font-label-caps text-[11px] text-on-surface-variant uppercase tracking-wider font-semibold">Quick inquiries</span>
+<div class="flex flex-wrap gap-2">
+<button class="px-3 py-1.5 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface font-body-sm text-body-sm transition-colors shadow-xs">
+                What's the status?
+              </button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface font-body-sm text-body-sm transition-colors shadow-xs">
+                Who is handling this?
+              </button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface font-body-sm text-body-sm transition-colors shadow-xs">
+                What do I need to do right now?
+              </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 5: ENGINEER EXPERIENCE (Deep Black Contrast Section) -->
+<section class="w-full py-28 lg:py-36 px-margin bg-[#090d16] text-[#ffffff]">
+<div class="max-w-7xl mx-auto flex flex-col gap-16">
+<!-- Headline & Philosophy -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-lg">
+<div class="max-w-2xl flex flex-col gap-space-sm">
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-secondary-fixed font-semibold">Engineer Leverage</span>
+<h2 class="font-display-lg text-[40px] sm:text-[56px] lg:text-[72px] leading-[0.96] tracking-[-0.03em] font-semibold text-white">
+            GIVE ENGINEERS A HEAD START.
+          </h2>
+</div>
+<p class="font-body-lg text-body-lg text-primary-fixed max-w-md leading-relaxed">
+          Nexa does not replace the engineer. It delivers the deep context, log analysis, and root-cause hypothesis that should have existed before the ticket ever arrived in their queue.
+        </p>
+</div>
+<!-- Engineer Ticket Workspace Visual -->
+<div class="w-full rounded-2xl bg-[#111726] border border-[#212c42] p-6 sm:p-10 flex flex-col gap-8 shadow-2xl">
+<!-- Header Ribbon -->
+<div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[#212c42]">
+<div class="flex items-center gap-3">
+<span class="px-2.5 py-1 rounded bg-[#ba1a1a]/20 text-[#ffdad6] font-label-code text-xs font-semibold">INC-8492 · P2 Critical</span>
+<span class="font-headline-sm text-headline-sm text-white font-medium">VPN Connection Handshake Failure</span>
+</div>
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/20 text-secondary-fixed font-label-code text-xs">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+<span>AI Suggested · Engineer Executes</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Diagnosis Canvas -->
+<div class="lg:col-span-7 flex flex-col gap-6">
+<div class="flex flex-col gap-2">
+<span class="font-label-caps text-label-caps text-[#bec6e0] uppercase tracking-wider">AI Root Cause Hypothesis</span>
+<p class="font-body-lg text-body-lg text-white font-medium">
+                VPN authentication certificate in macOS Keychain expired. RADIUS server rejected EAP-TLS negotiation.
+              </p>
+</div>
+<!-- Terminal Output / Trace Summary -->
+<div class="p-4 rounded-xl bg-[#070a10] border border-[#1a2335] font-label-code text-[12px] text-[#bec6e0] flex flex-col gap-1.5 font-mono">
+<div class="text-[#68dba9]">✓ Log query completed across 4 gateways in 1.1s</div>
+<div>[09:14:02] host=gw-us-east-1.corp action=drop reason="cert_expired"</div>
+<div>[09:14:02] identity="elena.rostova@nexa.internal" auth_source="Okta-Radius"</div>
+<div class="text-[#ffdad6]">! Resolution path: Re-issue user payload or renew CA trust pair</div>
+</div>
+<!-- Historical Precedent Reference -->
+<div class="p-4 rounded-xl bg-[#172033] flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary-fixed text-[20px]">history</span>
+<span class="font-body-sm text-body-sm text-white">Matched similar incident <strong class="font-label-code">INC-7821</strong> (Resolved in 4m by Alex M.)</span>
+</div>
+<span class="font-label-code text-xs text-[#bec6e0] underline cursor-pointer">View diff</span>
+</div>
+</div>
+<!-- Suggested Next Steps Checklist -->
+<div class="lg:col-span-5 p-6 rounded-xl bg-[#0b101c] border border-[#212c42] flex flex-col justify-between">
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between pb-3 border-b border-[#1c273c]">
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-[#bec6e0]">Actionable Runbook</span>
+<span class="font-label-code text-xs text-[#68dba9]">4 steps pre-populated</span>
+</div>
+<div class="flex flex-col gap-3">
+<label class="flex items-start gap-3 cursor-pointer group">
+<input checked="" class="mt-1 accent-secondary rounded" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-white line-through opacity-70">1. Verify VPN client log timestamp</span>
+</label>
+<label class="flex items-start gap-3 cursor-pointer group">
+<input checked="" class="mt-1 accent-secondary rounded" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-white line-through opacity-70">2. Inspect Radius auth fail error codes</span>
+</label>
+<label class="flex items-start gap-3 cursor-pointer group">
+<input class="mt-1 accent-secondary rounded" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-white font-medium group-hover:text-secondary-fixed transition-colors">3. Push renewed certificate via Jamf Pro</span>
+</label>
+<label class="flex items-start gap-3 cursor-pointer group">
+<input class="mt-1 accent-secondary rounded" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-[#bec6e0] group-hover:text-white transition-colors">4. Test connectivity handshake</span>
+</label>
+</div>
+</div>
+<div class="pt-6 mt-6 border-t border-[#1c273c] flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-[#bec6e0]">Assigned to you</span>
+<button class="h-9 px-4 rounded bg-white text-black font-body-sm text-body-sm font-semibold hover:bg-slate-200 transition-colors">
+                Apply Action 3 →
+              </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 6: HUMAN IN THE LOOP (Architectural Balance) -->
+<section class="w-full py-28 px-margin bg-surface">
+<div class="max-w-6xl mx-auto flex flex-col gap-14 text-center items-center">
+<div class="flex flex-col items-center gap-space-sm max-w-3xl">
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-secondary font-semibold">Strict Governance Guardrail</span>
+<h2 class="font-display-lg text-[36px] sm:text-[52px] leading-[1.02] tracking-tight text-on-surface font-semibold">
+          AI DOES THE THINKING. HUMANS STAY IN CONTROL.
+        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
+          Nexa does not mutate production configurations on its own in V1. It formulates verified plans; human engineers make the decisive calls.
+        </p>
+</div>
+<!-- Horizontal Flow Diagram -->
+<div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+<!-- Left: AI Domain -->
+<div class="p-8 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col gap-6">
+<div class="flex items-center justify-between pb-4 border-b border-surface-container-high">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">AI Responsibility Domain</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface font-label-code text-xs">Autonomous</span>
+</div>
+<div class="flex flex-col gap-3 font-body-md text-body-md">
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container-low text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[20px]">psychology</span>
+<span>1. Understand issue from ambiguous language</span>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container-low text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[20px]">search</span>
+<span>2. Investigate across telemetry, logs &amp; knowledge</span>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container-low text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[20px]">analytics</span>
+<span>3. Diagnose root cause with confidence interval</span>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container-low text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[20px]">format_list_bulleted</span>
+<span>4. Create step-by-step resolution plan</span>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container-low text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[20px]">person_pin</span>
+<span>5. Assign with complete context to right engineer</span>
+</div>
+</div>
+</div>
+<!-- Right: Engineer Domain -->
+<div class="p-8 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col gap-6">
+<div class="flex items-center justify-between pb-4 border-b border-surface-container-high">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Human Engineer Domain</span>
+<span class="px-2 py-0.5 rounded bg-primary text-on-primary font-label-code text-xs">Authoritative</span>
+</div>
+<div class="flex flex-col gap-3 font-body-md text-body-md">
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container-high/40 text-on-surface">
+<span class="material-symbols-outlined text-primary text-[20px]">verified</span>
+<span>1. Review proposed diagnosis and evidence</span>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container-high/40 text-on-surface">
+<span class="material-symbols-outlined text-primary text-[20px]">play_circle</span>
+<span>2. Execute actions or adjust checklist</span>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container-high/40 text-on-surface">
+<span class="material-symbols-outlined text-primary text-[20px]">forward</span>
+<span>3. Escalate when deeper cross-system tier needed</span>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container-high/40 text-on-surface">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span>4. Final sign-off &amp; ticket resolution verification</span>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-container-high/40 text-on-surface">
+<span class="material-symbols-outlined text-primary text-[20px]">auto_stories</span>
+<span>5. Enrich corporate memory for future recurrence</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 7: RESOLUTION PLAN (Product Feature Detail) -->
+<section class="w-full py-24 px-margin bg-surface-container-low/50">
+<div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-secondary font-semibold">Structured Execution</span>
+<h2 class="font-display-lg text-[32px] sm:text-[44px] leading-tight text-on-surface font-semibold">
+          EVERY INCIDENT STARTS WITH A PLAN.
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          No blank stare. No "Where do I start?" Nexa outputs a structured checklist derived from verified incident history and current telemetry.
+        </p>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Engineers can effortlessly add steps, tweak sequences, or reassign sub-tasks with one click.
+        </p>
+</div>
+<!-- Plan Checklist UI Widget -->
+<div class="lg:col-span-7">
+<div class="p-6 sm:p-8 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col gap-5">
+<div class="flex items-center justify-between pb-3 border-b border-surface-container-high">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Active Runbook: INC-8492</span>
+<div class="flex items-center gap-2">
+<button class="px-2.5 py-1 rounded bg-surface-container text-on-surface font-label-code text-xs font-medium hover:bg-surface-container-high transition-colors">+ Add Step</button>
+<button class="px-2.5 py-1 rounded bg-surface-container text-on-surface font-label-code text-xs font-medium hover:bg-surface-container-high transition-colors">Reorder</button>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-3">
+<span class="font-label-code text-label-code font-bold text-secondary">01</span>
+<span class="font-body-md text-body-md text-on-surface">Check client GlobalProtect connection log bundle</span>
+</div>
+<span class="material-symbols-outlined text-on-tertiary-container text-[20px]">check</span>
+</div>
+<div class="flex items-center justify-between p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-3">
+<span class="font-label-code text-label-code font-bold text-secondary">02</span>
+<span class="font-body-md text-body-md text-on-surface">Query Auth0 SSO directory for RADIUS sync lock</span>
+</div>
+<span class="material-symbols-outlined text-on-tertiary-container text-[20px]">check</span>
+</div>
+<div class="flex items-center justify-between p-3.5 rounded-lg bg-surface-container-highest">
+<div class="flex items-center gap-3">
+<span class="font-label-code text-label-code font-bold text-secondary">03</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Verify validity of MDM-pushed user cert payload</span>
+</div>
+<span class="font-label-caps text-[11px] px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-semibold">In Progress</span>
+</div>
+<div class="flex items-center justify-between p-3.5 rounded-lg bg-surface-container-low opacity-60">
+<div class="flex items-center gap-3">
+<span class="font-label-code text-label-code font-bold text-on-surface-variant">04</span>
+<span class="font-body-md text-body-md text-on-surface">Test tunnel handshake &amp; notify Elena Rostova</span>
+</div>
+<span class="font-label-code text-xs text-on-surface-variant">Pending</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 8: ESCALATION & CONTEXT CONTINUITY -->
+<section class="w-full py-28 px-margin bg-surface">
+<div class="max-w-6xl mx-auto flex flex-col gap-14">
+<div class="flex flex-col gap-space-sm max-w-3xl">
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-secondary font-semibold">Zero Information Loss</span>
+<h2 class="font-display-lg text-[36px] sm:text-[50px] leading-tight text-on-surface font-semibold">
+          WHEN L1 NEEDS HELP, CONTEXT MOVES WITH THE TICKET.
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          No restarting the investigation from zero. When a ticket escalates from L1 to L2 or Senior Infrastructure, the exact telemetry, hypothesis tests, and engineer annotations move in a clean bundle.
+        </p>
+</div>
+<!-- Architectural Context Bridge Visual -->
+<div class="p-8 sm:p-10 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col gap-8">
+<div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-6 border-b border-surface-container-high">
+<!-- L1 Source -->
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-label-code font-semibold text-on-surface">L1</div>
+<div>
+<span class="font-body-sm text-body-sm font-semibold text-on-surface block">L1 Service Desk</span>
+<span class="font-label-code text-xs text-on-surface-variant">Investigated 4 min · Steps 1 &amp; 2 executed</span>
+</div>
+</div>
+<div class="flex items-center gap-2 text-secondary font-label-caps text-label-caps font-semibold uppercase tracking-wider">
+<span>Seamless Handshake</span>
+<span class="material-symbols-outlined text-[20px]">trending_flat</span>
+</div>
+<!-- L2 Target -->
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-code font-semibold">L2</div>
+<div>
+<span class="font-body-sm text-body-sm font-semibold text-on-surface block">Tier 2 Network Operations</span>
+<span class="font-label-code text-xs text-on-surface-variant">Assigned with full dossier</span>
+</div>
+</div>
+</div>
+<!-- Transferred Context Dossier Pills -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="p-4 rounded-xl bg-surface-container-low">
+<span class="font-label-caps text-label-caps uppercase text-secondary font-semibold block mb-1">AI Diagnosis</span>
+<p class="font-body-sm text-body-sm text-on-surface">Root CA mismatch in macOS bundle</p>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-low">
+<span class="font-label-caps text-label-caps uppercase text-secondary font-semibold block mb-1">Execution Log</span>
+<p class="font-body-sm text-body-sm text-on-surface">L1 confirmed client auth fails</p>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-low">
+<span class="font-label-caps text-label-caps uppercase text-secondary font-semibold block mb-1">Engineer Notes</span>
+<p class="font-body-sm text-body-sm text-on-surface">"Requires Jamf cert profile redeploy"</p>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-low">
+<span class="font-label-caps text-label-caps uppercase text-secondary font-semibold block mb-1">Activity History</span>
+<p class="font-body-sm text-body-sm text-on-surface">Full telemetry timeline preserved</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 9: KNOWLEDGE & MEMORY -->
+<section class="w-full py-24 px-margin bg-surface-container-low/40">
+<div class="max-w-6xl mx-auto flex flex-col gap-12">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-secondary font-semibold">Institutional Recall</span>
+<h2 class="font-display-lg text-[32px] sm:text-[46px] tracking-tight text-on-surface font-semibold">
+          EVERY INCIDENT MAKES THE NEXT ONE EASIER.
+        </h2>
+</div>
+<!-- Synthesis Schema Diagram -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+<!-- Input Sources -->
+<div class="p-6 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div>
+<span class="font-label-caps text-label-caps uppercase text-on-surface-variant font-semibold block mb-4">Input Memory Sources</span>
+<div class="flex flex-col gap-2.5 font-label-code text-label-code text-on-surface">
+<div class="p-2.5 rounded bg-surface-container-low">Confluence &amp; Notion Runbooks</div>
+<div class="p-2.5 rounded bg-surface-container-low">10,000+ Historical Tickets</div>
+<div class="p-2.5 rounded bg-surface-container-low">Live CMDB &amp; Datadog Alerts</div>
+<div class="p-2.5 rounded bg-surface-container-low">Slack Incident Channel Threads</div>
+</div>
+</div>
+<span class="font-label-code text-xs text-on-surface-variant pt-4">Continuous embedding sync</span>
+</div>
+<!-- Nexa Intelligence Processor -->
+<div class="p-6 rounded-2xl bg-primary text-on-primary shadow-md flex flex-col justify-between">
+<div>
+<span class="font-label-caps text-label-caps uppercase text-primary-fixed font-semibold block mb-4">Nexa Semantic Graph</span>
+<div class="flex flex-col gap-3 font-body-sm text-body-sm text-slate-200">
+<p>Indexes resolution workflows, tracks engineer fix efficacy, and discards stale procedures.</p>
+<p>When an engineer modifies an AI runbook, Nexa recalibrates future suggestions.</p>
+</div>
+</div>
+<div class="pt-4 border-t border-slate-800">
+<span class="font-label-code text-xs text-tertiary-fixed">Dynamic context synthesis active</span>
+</div>
+</div>
+<!-- Output Precision -->
+<div class="p-6 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div>
+<span class="font-label-caps text-label-caps uppercase text-on-surface-variant font-semibold block mb-4">Immediate Payoff</span>
+<div class="flex flex-col gap-2.5 font-body-sm text-body-sm text-on-surface">
+<div class="p-2.5 rounded bg-surface-container-low">90% faster recurring incident diagnosis</div>
+<div class="p-2.5 rounded bg-surface-container-low">Automated runbook suggestion accuracy</div>
+<div class="p-2.5 rounded bg-surface-container-low">Zero tribal knowledge trapped in heads</div>
+</div>
+</div>
+<span class="font-label-code text-xs text-on-surface-variant pt-4">Zero manual doc writing</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 10: THE AI ITSM SYSTEM (Full Bleed Dark Visual) -->
+<section class="w-full py-28 lg:py-36 px-margin bg-[#070b14] text-white">
+<div class="max-w-7xl mx-auto flex flex-col items-center text-center gap-12">
+<div class="flex flex-col items-center gap-3 max-w-3xl">
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-secondary-fixed font-semibold">Unified Operating System</span>
+<h2 class="font-display-lg text-[40px] sm:text-[60px] tracking-tight font-semibold text-white">
+          ONE INTELLIGENCE LAYER FOR IT.
+        </h2>
+<p class="font-body-md text-body-md text-[#bec6e0] max-w-xl">
+          An end-to-end incident pipeline replacing fragmented ticketing tools, manual slack triage channels, and dead runbooks.
+        </p>
+</div>
+<!-- Pipeline Architecture Graphic -->
+<div class="w-full p-8 sm:p-12 rounded-2xl bg-[#0f172a]/70 border border-[#1e293b] flex flex-col gap-10">
+<!-- Pipeline Flow -->
+<div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm font-label-code">
+<span class="px-3 py-1.5 rounded bg-[#1e293b] text-white">Employee</span>
+<span class="text-secondary-fixed">→</span>
+<span class="px-3 py-1.5 rounded bg-secondary/30 text-secondary-fixed font-medium">AI Assistant</span>
+<span class="text-secondary-fixed">→</span>
+<span class="px-3 py-1.5 rounded bg-secondary/30 text-secondary-fixed font-medium">AI Triage</span>
+<span class="text-secondary-fixed">→</span>
+<span class="px-3 py-1.5 rounded bg-secondary/30 text-secondary-fixed font-medium">AI Diagnosis</span>
+<span class="text-secondary-fixed">→</span>
+<span class="px-3 py-1.5 rounded bg-white text-black font-semibold">Resolution Plan</span>
+<span class="text-secondary-fixed">→</span>
+<span class="px-3 py-1.5 rounded bg-[#1e293b] text-white">Engineer</span>
+<span class="text-secondary-fixed">→</span>
+<span class="px-3 py-1.5 rounded bg-[#069669]/30 text-[#85f8c4]">Resolved</span>
+</div>
+<!-- Ambient Connected Modules -->
+<div class="flex flex-wrap items-center justify-center gap-3 pt-6 border-t border-[#1e293b]/80">
+<span class="font-label-code text-xs px-3 py-1 rounded-full bg-[#131b2e] text-[#bec6e0]">Incidents</span>
+<span class="font-label-code text-xs px-3 py-1 rounded-full bg-[#131b2e] text-[#bec6e0]">Service Requests</span>
+<span class="font-label-code text-xs px-3 py-1 rounded-full bg-[#131b2e] text-[#bec6e0]">Runbook Synthesis</span>
+<span class="font-label-code text-xs px-3 py-1 rounded-full bg-[#131b2e] text-[#bec6e0]">CMDB &amp; Topology</span>
+<span class="font-label-code text-xs px-3 py-1 rounded-full bg-[#131b2e] text-[#bec6e0]">Change Management</span>
+<span class="font-label-code text-xs px-3 py-1 rounded-full bg-[#131b2e] text-[#bec6e0]">SLA Protection</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 11: PRODUCT CAPABILITIES (Compact Editorial Grid) -->
+<section class="w-full py-28 px-margin bg-surface">
+<div class="max-w-7xl mx-auto flex flex-col gap-14">
+<div class="flex flex-col gap-2">
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-secondary font-semibold">Capabilities</span>
+<h2 class="font-headline-lg text-[32px] sm:text-[40px] tracking-tight text-on-surface font-semibold">
+          EVERYTHING YOUR IT TEAM NEEDS.
+        </h2>
+</div>
+<!-- 6-Item Minimal Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-3">
+<span class="material-symbols-outlined text-secondary text-[24px]">troubleshoot</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Incident Management</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Real-time multi-channel incident lifecycle management without slow status updates or lost tickets.
+          </p>
+</div>
+<div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-3">
+<span class="material-symbols-outlined text-secondary text-[24px]">auto_awesome</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">AI Triage &amp; Classification</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Automatic categorization, severity tagging, and direct routing backed by deterministic confidence scoring.
+          </p>
+</div>
+<div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-3">
+<span class="material-symbols-outlined text-secondary text-[24px]">auto_stories</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Knowledge Synthesis</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Transforms static internal wikis and past resolved tickets into dynamic, contextual diagnostic runbooks.
+          </p>
+</div>
+<div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-3">
+<span class="material-symbols-outlined text-secondary text-[24px]">checklist</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Service Requests</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Zero-touch hardware, software access, and IAM provisioning with manager approval workflows built-in.
+          </p>
+</div>
+<div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-3">
+<span class="material-symbols-outlined text-secondary text-[24px]">lan</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Escalation Handshake</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Seamless multi-tier escalation retaining all logs, hypotheses, and notes so senior engineers skip initial triage.
+          </p>
+</div>
+<div class="p-6 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-3">
+<span class="material-symbols-outlined text-secondary text-[24px]">database</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Services &amp; CMDB Sync</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Bi-directional synchronization with AWS, Okta, Jamf, Azure AD, and Jira Service Management catalogs.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 12: OPERATIONS (Real Workspace Visual) -->
+<section class="w-full py-24 px-margin bg-surface-container-low/40">
+<div class="max-w-6xl mx-auto flex flex-col gap-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-secondary font-semibold block mb-2">Operational Focus</span>
+<h2 class="font-headline-lg text-[32px] sm:text-[40px] tracking-tight text-on-surface font-semibold">
+            KNOW WHAT NEEDS YOUR ATTENTION.
+          </h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+          Nexa surfaces the work that matters instead of forcing engineers to sift through overwhelming backlogs.
+        </p>
+</div>
+<!-- Focused Queue Preview UI -->
+<div class="p-6 sm:p-8 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col gap-4">
+<div class="flex items-center justify-between pb-3 border-b border-surface-container-high">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="font-label-caps text-label-caps font-semibold uppercase text-on-surface tracking-wider">Needs Your Attention · 3 Active</span>
+</div>
+<span class="font-label-code text-xs text-on-surface-variant">Live Dispatch View</span>
+</div>
+<!-- Ticket 1 -->
+<div class="p-4 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<span class="px-2 py-0.5 rounded bg-error-container text-error font-label-code text-xs font-semibold">P1</span>
+<div>
+<span class="font-body-md text-body-md text-on-surface font-medium block">Stripe Webhook Gateway Timeout</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Payments team · AI generated 3-step roll-back plan</span>
+</div>
+</div>
+<button class="h-8 px-3 rounded bg-primary text-on-primary font-body-sm text-body-sm font-medium self-start sm:self-center">Review Plan →</button>
+</div>
+<!-- Ticket 2 -->
+<div class="p-4 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-code text-xs font-semibold">P2</span>
+<div>
+<span class="font-body-md text-body-md text-on-surface font-medium block">GlobalProtect Handshake Failure</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Assigned to Rahul S. · Root Cert Expiration verified</span>
+</div>
+</div>
+<button class="h-8 px-3 rounded bg-surface-container-lowest text-on-surface font-body-sm text-body-sm font-medium self-start sm:self-center">Resume</button>
+</div>
+<!-- Ticket 3 -->
+<div class="p-4 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-code text-xs font-semibold">P3</span>
+<div>
+<span class="font-body-md text-body-md text-on-surface font-medium block">Exchange Sync Latency on iOS Client</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Diagnostics gathered · Awaiting mailbox restart approval</span>
+</div>
+</div>
+<button class="h-8 px-3 rounded bg-surface-container-lowest text-on-surface font-body-sm text-body-sm font-medium self-start sm:self-center">Approve</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 13: AI SETTINGS & GUARDRAILS -->
+<section class="w-full py-24 px-margin bg-surface">
+<div class="max-w-5xl mx-auto flex flex-col gap-10">
+<div class="flex flex-col gap-2">
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-secondary font-semibold">Safety &amp; Policies</span>
+<h2 class="font-headline-lg text-[32px] sm:text-[38px] tracking-tight text-on-surface font-semibold">
+          INTELLIGENCE WITHOUT LOSING CONTROL.
+        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
+          Granular permission policies ensure autonomous assistance stays within strict enterprise boundaries.
+        </p>
+</div>
+<!-- Toggle Matrix Visual -->
+<div class="p-6 sm:p-8 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col gap-4">
+<div class="flex items-center justify-between py-3 border-b border-surface-container-high">
+<div>
+<span class="font-body-md text-body-md font-medium text-on-surface block">AI Triage &amp; Categorization</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Automatically parse employee prompts and assign priority tags</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-tertiary-container text-on-tertiary-container font-label-code text-xs font-bold">ACTIVE · ON</span>
+</div>
+<div class="flex items-center justify-between py-3 border-b border-surface-container-high">
+<div>
+<span class="font-body-md text-body-md font-medium text-on-surface block">AI Root Cause Diagnosis</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Query internal telemetry and formulate causal hypotheses</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-tertiary-container text-on-tertiary-container font-label-code text-xs font-bold">ACTIVE · ON</span>
+</div>
+<div class="flex items-center justify-between py-3 border-b border-surface-container-high">
+<div>
+<span class="font-body-md text-body-md font-medium text-on-surface block">Dynamic Resolution Plans</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Synthesize interactive check-lists from historical resolutions</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-tertiary-container text-on-tertiary-container font-label-code text-xs font-bold">ACTIVE · ON</span>
+</div>
+<div class="flex items-center justify-between py-3 border-b border-surface-container-high">
+<div>
+<span class="font-body-md text-body-md font-medium text-on-surface block">Direct Infrastructure Mutation</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Autonomous API writes to production DNS, IAM, or cloud infrastructure</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-error-container text-error font-label-code text-xs font-bold">BLOCKED · OFF</span>
+</div>
+<div class="flex items-center justify-between py-3">
+<div>
+<span class="font-body-md text-body-md font-medium text-on-surface block">Human Verification Mandate</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Require engineer sign-off on remediation actions</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-code text-xs font-bold">ENFORCED</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 14: FINAL CALL TO ACTION (Expansive Whitespace) -->
+<section class="w-full py-32 lg:py-48 px-margin bg-surface-container-lowest">
+<div class="max-w-5xl mx-auto flex flex-col items-start gap-8">
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-secondary font-semibold">The Standard for Modern IT</span>
+<h2 class="font-display-lg text-[44px] sm:text-[64px] lg:text-[84px] leading-[0.95] tracking-[-0.035em] text-on-surface font-semibold">
+        YOUR IT TEAM ALREADY KNOWS HOW TO FIX THINGS.<br/>
+<span class="text-on-surface-variant/80">NEXA HELPS THEM GET THERE FASTER.</span>
+</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed">
+        AI investigates. Engineers resolve. Organizations move faster.
+      </p>
+<div class="flex flex-wrap items-center gap-space-md pt-4">
+<a class="h-12 px-space-xl bg-primary text-on-primary hover:bg-primary-container hover:text-on-primary transition-all duration-150 rounded-lg font-body-md text-body-md font-medium inline-flex items-center gap-space-xs shadow-md" data-path="get-started" href="#">
+<span>Get started</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+<a class="h-12 px-space-lg bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors duration-150 rounded-lg font-body-md text-body-md font-medium inline-flex items-center" data-path="login" href="#">
+<span>Sign in</span>
+</a>
+</div>
+</div>
+</section>
+</div></main><footer class="w-full bg-surface-container-low py-space-xl mt-space-xl"><div class="max-w-7xl mx-auto px-margin"><div class="flex flex-col md:flex-row items-baseline justify-between gap-space-lg pb-space-lg"><div class="flex flex-col gap-space-xs"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Nexa</span><span class="font-label-caps text-label-caps uppercase text-on-surface-variant tracking-wider">ITSM</span></div><p class="font-body-sm text-body-sm text-on-surface-variant max-w-sm">Ultra-minimal, agentic incident workflows and operational automation for technical organizations.</p></div><div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xl text-left"><div class="flex flex-col gap-space-sm"><span class="font-label-caps text-label-caps uppercase text-on-surface-variant tracking-wider font-semibold">Platform</span><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="product" href="#">Product</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="how-it-works" href="#">Architecture</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="solutions" href="#">Incident Triage</a></div><div class="flex flex-col gap-space-sm"><span class="font-label-caps text-label-caps uppercase text-on-surface-variant tracking-wider font-semibold">Resources</span><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="resources" href="#">Documentation</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="resources" href="#">API Specs</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="resources" href="#">Runbooks</a></div><div class="flex flex-col gap-space-sm"><span class="font-label-caps text-label-caps uppercase text-on-surface-variant tracking-wider font-semibold">Company</span><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="about" href="#">About</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="security" href="#">Security</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="compliance" href="#">Compliance</a></div><div class="flex flex-col gap-space-sm"><span class="font-label-caps text-label-caps uppercase text-on-surface-variant tracking-wider font-semibold">Access</span><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="login" href="#">Sign in</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="get-started" href="#">Request Demo</a></div></div></div><div class="pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md font-body-sm text-body-sm text-on-surface-variant"><p>© 2025 Nexa Systems Inc. Built for zero-friction incident operations.</p><div class="flex items-center gap-space-lg"><a class="hover:text-on-surface transition-colors" data-path="privacy" href="#">Privacy Policy</a><a class="hover:text-on-surface transition-colors" data-path="terms" href="#">Terms of Service</a><a class="hover:text-on-surface transition-colors flex items-center gap-space-xs" data-path="status" href="#"><span class="w-2 h-2 rounded-full bg-tertiary-container inline-block"></span>Systems Normal</a></div></div></div></footer></body></html>

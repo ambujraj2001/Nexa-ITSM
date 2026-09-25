@@ -1,0 +1,219 @@
+/** Workspace sections: user problem, AI diagnosis (explainable, no reasoning traces), escalation handoff, resolution. */
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import clsx from "clsx";
+import { useState } from "react";
+import { StageList, useInvestigationProgress } from "@/components/InvestigationProgress";
+import { useToast } from "@/components/Toast";
+import { Icon, Spinner } from "@/components/ui";
+import { api, errorMessage } from "@/lib/api";
+import { shortDate, timeOfDay } from "@/lib/format";
+import type { TicketDetail } from "@/lib/types";
+
+export function UserProblem({ ticket }: { ticket: TicketDetail }) {
+  const r = ticket.requester;
+  const where = [r.location, r.department].filter(Boolean).join(", ");
+  const signals = ticket.analysis?.signals ?? [];
+  return (
+    <section className="flex flex-col gap-space-xs">
+      <div className="flex items-center justify-between text-on-surface-variant">
+        <div className="flex flex-wrap items-center gap-space-xs">
+          <span className="font-label-caps text-label-caps font-medium uppercase tracking-wider text-outline">User Problem</span>
+          <span className="h-1 w-1 rounded-full bg-outline-variant" />
+          <span className="font-body-sm text-body-sm font-medium text-on-surface">{r.name}</span>
+          {where && <span className="font-body-sm text-body-sm text-on-surface-variant">({where})</span>}
+        </div>
+        <span className="font-label-code text-label-code text-outline">{timeOfDay(ticket.created_at)}</span>
+      </div>
+      <blockquote className="whitespace-pre-line border-l-2 border-primary/20 py-1 pl-4 font-body-lg text-body-lg italic text-on-surface">“{ticket.description}”</blockquote>
+      {signals.length > 0 && (
+        <div className="flex flex-wrap items-center gap-space-sm pl-4 font-label-code text-[11px] text-on-surface-variant">
+          {signals.map((s, i) => (
+            <span key={`${s.label}-${i}`} className="flex items-center gap-space-sm">
+              {i > 0 && <span>•</span>}
+              <span className={clsx(s.kind === "error" && "font-medium text-error")} title={s.label}>{s.kind === "error" ? `Err: ${s.value}` : s.value}</span>
+            </span>
+          ))}
+        </div>
+      )}
+    </section>
+  );
+}
+
+const CONFIDENCE_TONE: Record<string, string> = {
+  high: "bg-tertiary-fixed/40 text-on-tertiary-fixed-variant",
+  medium: "bg-secondary-fixed text-on-secondary-fixed-variant",
+  low: "bg-error-container text-on-error-container",
+};
+
+export function DiagnosisSection({ ticket }: { ticket: TicketDetail }) {
+  const [open, setOpen] = useState(false);
+  const queryClient = useQueryClient();
+  const toast = useToast();
+  const running = ticket.ai_status === "pending" || ticket.ai_status === "running";
+  const progress = useInvestigationProgress(running ? ticket.id : null);
+  const retry = useMutation({
+    mutationFn: () => api.tickets.investigate(ticket.id),
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ["ticket", ticket.id] });
+      void queryClient.invalidateQueries({ queryKey: ["progress", ticket.id] });
+      toast("AI investigation restarted", "info");
+    },
+    onError: (e) => toast(errorMessage(e), "error"),
+  });
+  const a = ticket.analysis;
+  const kb = a?.evidence.filter((e) => e.source_type === "knowledge_article") ?? [];
+  const incidents = a?.evidence.filter((e) => e.source_type === "historical_incident") ?? [];
+  const matchLine = [
+    incidents.length ? `Matches ${incidents.length} similar incident${incidents.length > 1 ? "s" : ""}` : null,
+    kb.length ? kb.map((k) => k.reference).filter(Boolean).join(", ") : null,
+  ].filter(Boolean).join(" and ");
+
+  return (
+    <section className="flex flex-col gap-space-xs pt-space-xs">
+      <span className="font-label-caps text-label-caps font-medium uppercase tracking-wider text-outline">AI Diagnosis</span>
+      {running ? (
+        <div className="flex flex-col gap-space-sm rounded bg-surface-container-low p-space-md">
+          <div className="flex items-center gap-space-sm font-body-md text-body-md font-medium text-on-surface">
+            <Spinner /> AI investigation in progress…
+          </div>
+          {progress.data && <StageList progress={progress.data} compact />}
+        </div>
+      ) : ticket.ai_status === "failed" && !a?.diagnosis ? (
+        <div className="flex items-start justify-between gap-space-md rounded bg-surface-container-low p-space-md">
+          <div className="flex items-start gap-space-sm">
+            <Icon name="info" className="mt-0.5 text-[18px] text-on-surface-variant" />
+            <div>
+              <p className="font-body-md text-body-md font-medium text-on-surface">AI investigation failed. You can continue manually.</p>
+              <p className="font-body-sm text-body-sm text-on-surface-variant">The ticket was routed by assignment rules. Nothing below was generated by AI.</p>
+            </div>
+          </div>
+          {ticket.permissions.can_retry_ai && (
+            <button type="button" className="btn-ai h-8 shrink-0 px-3" disabled={retry.isPending} onClick={() => retry.mutate()}>
+              {retry.isPending ? <Spinner /> : <Icon name="refresh" className="text-[16px]" />} Retry
+            </button>
+          )}
+        </div>
+      ) : !a?.diagnosis ? (
+        <div className="rounded bg-surface-container-low p-space-md font-body-md text-body-md text-on-surface-variant">
+          {ticket.ai_status === "skipped" ? "AI diagnosis is turned off for this workspace." : "No diagnosis yet."}
+        </div>
+      ) : (
+        <div className="flex flex-col gap-1.5 rounded bg-surface-container-low p-space-md">
+          <div className="flex items-start gap-space-sm">
+            <Icon name="auto_awesome" className="mt-0.5 text-[18px] text-secondary" />
+            <div className="flex flex-1 flex-col gap-0.5">
+              <div className="flex flex-wrap items-center gap-space-sm">
+                <p className="font-body-md text-body-md font-medium leading-snug text-on-surface">{a.diagnosis}</p>
+                {a.confidence_label && <span className={clsx("chip", CONFIDENCE_TONE[a.confidence_label])}>{a.confidence_label} confidence</span>}
+              </div>
+              <p className="font-body-sm text-body-sm text-on-surface-variant">
+                {matchLine ? `${matchLine}.` : "Based on the requester's description."}
+                {a.below_threshold && " Below your confidence threshold — verify before acting."}
+              </p>
+            </div>
+          </div>
+          <button type="button" onClick={() => setOpen((v) => !v)} className="ml-7 inline-flex items-center gap-1 self-start font-label-code text-[11px] text-on-surface-variant hover:text-on-surface" aria-expanded={open}>
+            <Icon name="expand_more" className={clsx("text-[14px] transition-transform", open && "rotate-180")} />
+            Why this was suggested
+          </button>
+          {open && (
+            <div className="ml-7 flex flex-col gap-space-md border-t border-surface-container-high pt-space-sm">
+              {a.rationale && <p className="font-body-sm text-body-sm text-on-surface">{a.rationale}</p>}
+              {a.evidence.length > 0 && (
+                <div className="flex flex-col gap-1">
+                  <span className="label-caps text-on-surface-variant">Evidence</span>
+                  {a.evidence.map((e, i) => (
+                    <div key={i} className="flex items-start gap-space-xs font-body-sm text-body-sm">
+                      <Icon name={e.source_type === "knowledge_article" ? "description" : e.source_type === "historical_incident" ? "history" : "person"} className="mt-0.5 text-[14px] text-outline" />
+                      <span className="text-on-surface">
+                        {e.reference && <span className="mr-1 font-label-code text-label-code font-medium">{e.reference}</span>}
+                        {e.title && <span className="mr-1 text-on-surface-variant">“{e.title}” —</span>}
+                        {e.summary}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {a.hypotheses.length > 0 && (
+                <div className="flex flex-col gap-1">
+                  <span className="label-caps text-on-surface-variant">Other possibilities</span>
+                  {a.hypotheses.map((h, i) => (
+                    <div key={i} className="font-body-sm text-body-sm text-on-surface">
+                      <span className="font-medium">{h.cause}</span> <span className="text-on-surface-variant">({h.likelihood})</span>
+                      {h.how_to_verify && <span className="text-on-surface-variant"> — verify: {h.how_to_verify}</span>}
+                    </div>
+                  ))}
+                </div>
+              )}
+              {a.missing_information.length > 0 && (
+                <div className="flex flex-col gap-1">
+                  <span className="label-caps text-on-surface-variant">Worth asking the requester</span>
+                  {a.missing_information.map((q) => (
+                    <p key={q} className="font-body-sm text-body-sm text-on-surface">• {q}</p>
+                  ))}
+                </div>
+              )}
+              <p className="font-body-sm text-[11px] text-outline">Likely cause — not confirmed. Engineers verify and execute every change.</p>
+            </div>
+          )}
+        </div>
+      )}
+    </section>
+  );
+}
+
+export function EscalationBanner({ ticket }: { ticket: TicketDetail }) {
+  const e = ticket.escalation;
+  const h = ticket.analysis?.handoff;
+  if (!e) return null;
+  return (
+    <section className="flex flex-col gap-space-sm rounded-xl border border-secondary-fixed bg-surface-container-lowest p-space-md">
+      <div className="flex flex-wrap items-center gap-space-xs font-body-md text-body-md text-on-surface">
+        <Icon name="share" className="text-[16px] text-secondary" />
+        <span className="font-medium">Escalated{e.from_person ? ` from ${e.from_person.name}` : ""}</span>
+        <span className="text-on-surface-variant">· {e.reason_label} · {shortDate(e.escalated_at)}</span>
+      </div>
+      {e.note && <p className="font-body-sm text-body-sm text-on-surface">“{e.note}”</p>}
+      {h ? (
+        <div className="grid grid-cols-1 gap-space-sm rounded bg-surface-container-low p-space-sm md:grid-cols-2">
+          <p className="font-body-sm text-body-sm text-on-surface md:col-span-2"><Icon name="auto_awesome" className="mr-1 align-[-2px] text-[14px] text-secondary" />{h.summary}</p>
+          {[
+            ["Checked so far", h.completed_checks],
+            ["Ruled out", h.ruled_out],
+            ["Still unknown", h.open_questions],
+            ["Suggested next", h.suggested_next],
+          ].map(([label, items]) =>
+            (items as string[]).length ? (
+              <div key={label as string} className="flex flex-col gap-0.5">
+                <span className="label-caps text-on-surface-variant">{label as string}</span>
+                {(items as string[]).map((i) => <span key={i} className="font-body-sm text-body-sm text-on-surface">• {i}</span>)}
+              </div>
+            ) : null,
+          )}
+        </div>
+      ) : (
+        <p className="font-body-sm text-body-sm text-on-surface-variant">Full context carried over: diagnosis, evidence, plan, completed steps, notes and history below.</p>
+      )}
+    </section>
+  );
+}
+
+export function ResolutionBlock({ ticket }: { ticket: TicketDetail }) {
+  const r = ticket.resolution;
+  if (!r || !r.resolved_at) return null;
+  return (
+    <section className="flex flex-col gap-space-sm rounded-xl bg-surface-container-lowest p-space-lg shadow-sm">
+      <div className="flex items-center gap-space-xs">
+        <Icon name="task_alt" className="text-[20px] text-on-tertiary-container" />
+        <h2 className="font-headline-sm text-headline-sm font-semibold text-on-surface">Resolved</h2>
+        <span className="font-body-sm text-body-sm text-on-surface-variant">· {shortDate(r.resolved_at)}{r.resolved_by ? ` by ${r.resolved_by.name}` : ""}</span>
+      </div>
+      <p className="font-body-md text-body-md text-on-surface">{r.summary}</p>
+      {r.employee_summary && (
+        <p className="rounded bg-surface-container-low px-space-sm py-2 font-body-sm text-body-sm text-on-surface-variant">
+          <Icon name="auto_awesome" className="mr-1 align-[-2px] text-[14px] text-secondary" />Shared with the requester: {r.employee_summary}
+        </p>
+      )}
+    </section>
+  );
+}
