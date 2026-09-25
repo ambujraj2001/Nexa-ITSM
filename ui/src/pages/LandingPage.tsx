@@ -8,7 +8,7 @@
  * every change. Tickets, people and timestamps inside the illustrations are examples.
  */
 import clsx from "clsx";
-import { Fragment, useEffect, useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router";
 import { Icon, NexaMark } from "@/components/ui";
@@ -32,10 +32,11 @@ const pad = (n: number) => String(n).padStart(2, "0");
 // ── Header ───────────────────────────────────────────────────────────────────
 
 const NAV_LINKS = [
-  { label: "Product", href: "#product" },
-  { label: "How it works", href: "#how-it-works" },
-  { label: "Solutions", href: "#engineers" },
-  { label: "Resources", href: "#knowledge" },
+  { label: "How it works", href: "#horizon" },
+  { label: "Employees", href: "#employees" },
+  { label: "Engineers", href: "#engineers" },
+  { label: "Escalation", href: "#escalation" },
+  { label: "Compare", href: "#compare" },
 ];
 
 /** True while the header floats over a section marked data-nav-dark. */
@@ -286,73 +287,13 @@ function ShiftSection() {
   );
 }
 
-// ── 3. How it works ──────────────────────────────────────────────────────────
-
-const STAGES = [
-  {
-    label: "Understand",
-    title: "Natural Input",
-    body: '"My VPN stopped working." No forced drop-down classifications or obscure component pickers.',
-    footer: "Input: web assistant",
-  },
-  {
-    label: "Investigate",
-    title: "Context Synthesis",
-    body: "AI automatically queries internal runbooks, past incident history, and your service and asset catalogue.",
-    footer: "Knowledge base + incident history",
-  },
-  {
-    label: "Diagnose",
-    title: "Probable Cause",
-    body: 'Hypothesis generated: "Client authentication cert invalid after G2 renewal." Backed by cited evidence.',
-    footer: "Diagnostic certainty: High",
-  },
-  {
-    label: "Route",
-    title: "Surgical Assignment",
-    body: "Targeted to Rahul Sharma (Network Support). Dispatched with ready-to-execute step checklist.",
-    footer: "Routed by rules, recommended by AI",
-  },
-];
-
-function HowItWorksSection() {
-  return (
-    <section id="how-it-works" className="w-full py-28 px-margin scroll-mt-16">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-space-md">
-          <div>
-            <Eyebrow className="text-on-surface-variant block mb-2">Predictable Trajectory</Eyebrow>
-            <h2 className="font-headline-lg text-[28px] sm:text-[36px] leading-tight tracking-tight text-on-surface font-semibold">FROM 'SOMETHING IS BROKEN' TO A CLEAR PLAN.</h2>
-          </div>
-          <span className="font-label-code text-label-code text-on-surface-variant">Deterministic progression · Every stage is visible to the engineer</span>
-        </div>
-        <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {STAGES.map((stage, i) => (
-            <li key={stage.label} className="nx-reveal-in nx-depth p-6 rounded-xl bg-surface-container-lowest flex flex-col justify-between h-72 transition-transform duration-300 hover:-translate-y-1.5">
-              <div className="flex flex-col">
-                <span className="font-display-lg text-display-lg text-on-surface font-semibold mb-space-sm">{pad(i + 1)}</span>
-                <span className="font-label-caps text-label-caps uppercase text-secondary font-semibold mb-space-xs">{stage.label}</span>
-                <h3 className="font-headline-sm text-headline-sm text-on-surface font-semibold mb-space-xs">{stage.title}</h3>
-                <p className="font-body-sm text-body-sm text-on-surface-variant">{stage.body}</p>
-              </div>
-              <div className="pt-4 border-t border-surface-container-high/60">
-                <span className="font-label-code text-label-code text-on-surface-variant/80">{stage.footer}</span>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </section>
-  );
-}
-
 // ── 4. Employee experience ───────────────────────────────────────────────────
 
 const QUICK_PROMPTS = ["What's the status?", "Who is handling this?", "What do I need to do right now?"];
 
 function EmployeeSection() {
   return (
-    <section className="w-full py-24 px-margin bg-surface-container-lowest">
+    <section id="employees" className="w-full py-24 px-margin bg-surface-container-lowest scroll-mt-16">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         <div className="lg:col-span-5 flex flex-col gap-space-md">
           <Eyebrow>User Experience</Eyebrow>
@@ -611,70 +552,6 @@ function HumanInTheLoopSection() {
   );
 }
 
-// ── 7. Resolution plan ───────────────────────────────────────────────────────
-
-const PLAN_STEPS: { text: string; state: "done" | "active" | "pending" }[] = [
-  { text: "Check client GlobalProtect connection log bundle", state: "done" },
-  { text: "Query Auth0 SSO directory for RADIUS sync lock", state: "done" },
-  { text: "Verify validity of MDM-pushed user cert payload", state: "active" },
-  { text: "Test tunnel handshake & notify Elena Rostova", state: "pending" },
-];
-
-const PLAN_ROW = {
-  done: "bg-surface-container-low hover:bg-surface-container transition-colors",
-  active: "bg-surface-container-highest",
-  pending: "bg-surface-container-low opacity-60",
-};
-
-function ResolutionPlanSection() {
-  return (
-    <section className="w-full py-24 px-margin bg-surface-container-low/50">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <div className="lg:col-span-5 flex flex-col gap-space-md">
-          <Eyebrow>Structured Execution</Eyebrow>
-          <h2 className="font-display-lg text-[32px] sm:text-[44px] leading-tight text-on-surface font-semibold">EVERY INCIDENT STARTS WITH A PLAN.</h2>
-          <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
-            No blank stare. No "Where do I start?" Nexa outputs a structured checklist derived from verified incident history and your own knowledge base.
-          </p>
-          <p className="font-body-md text-body-md text-on-surface-variant">Engineers can effortlessly add steps, tweak sequences, or reassign the ticket with one click.</p>
-        </div>
-
-        {/* Plan checklist preview */}
-        <Tilt max={7} className="lg:col-span-7">
-          <div className="p-6 sm:p-8 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col gap-5">
-            <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-surface-container-high">
-              <span className="font-headline-sm text-headline-sm text-on-surface font-semibold">Active Runbook: INC-8492</span>
-              <div className="flex items-center gap-2">
-                <MockButton className="px-2.5 py-1 rounded bg-surface-container text-on-surface font-label-code text-xs font-medium hover:bg-surface-container-high transition-colors">
-                  + Add Step
-                </MockButton>
-                <MockButton className="px-2.5 py-1 rounded bg-surface-container text-on-surface font-label-code text-xs font-medium hover:bg-surface-container-high transition-colors">
-                  Reorder
-                </MockButton>
-              </div>
-            </div>
-            <ol className="flex flex-col gap-3">
-              {PLAN_STEPS.map((step, i) => (
-                <li key={step.text} className={clsx("flex items-center justify-between gap-3 p-3.5 rounded-lg", PLAN_ROW[step.state])}>
-                  <div className="flex items-center gap-3">
-                    <span className={clsx("font-label-code text-label-code font-bold", step.state === "pending" ? "text-on-surface-variant" : "text-secondary")}>{pad(i + 1)}</span>
-                    <span className={clsx("font-body-md text-body-md text-on-surface", step.state === "active" && "font-medium")}>{step.text}</span>
-                  </div>
-                  {step.state === "done" && <Icon name="check" label="Done" className="text-on-tertiary-container text-[20px]" />}
-                  {step.state === "active" && (
-                    <span className="shrink-0 whitespace-nowrap font-label-caps text-[11px] px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-semibold">In Progress</span>
-                  )}
-                  {step.state === "pending" && <span className="shrink-0 font-label-code text-xs text-on-surface-variant">Pending</span>}
-                </li>
-              ))}
-            </ol>
-          </div>
-        </Tilt>
-      </div>
-    </section>
-  );
-}
-
 // ── 8. Escalation & context continuity ───────────────────────────────────────
 
 const DOSSIER = [
@@ -686,7 +563,7 @@ const DOSSIER = [
 
 function EscalationSection() {
   return (
-    <section className="w-full py-28 px-margin bg-surface">
+    <section id="escalation" className="w-full py-28 px-margin bg-surface scroll-mt-16">
       <div className="max-w-6xl mx-auto flex flex-col gap-14">
         <div className="flex flex-col gap-space-sm max-w-3xl">
           <Eyebrow>Context Continuity</Eyebrow>
@@ -733,272 +610,102 @@ function EscalationSection() {
   );
 }
 
-// ── 9. Knowledge & memory ────────────────────────────────────────────────────
+// ── Why Nexa: comparison ─────────────────────────────────────────────────────
 
-const MEMORY_SOURCES = ["Knowledge base articles & runbooks", "Resolved incident history", "Service & asset catalogue", "Engineer notes and resolutions"];
+const SALESFORCE_LOGO = "https://cdn.jsdelivr.net/npm/simple-icons@15/icons/salesforce.svg";
 
-const PAYOFFS = ["Recurring issues recognised sooner", "Plans grounded in your own runbooks", "Resolutions captured for next time"];
-
-function KnowledgeSection() {
-  return (
-    <section id="knowledge" className="w-full py-24 px-margin bg-surface-container-low/40 scroll-mt-16">
-      <div className="max-w-6xl mx-auto flex flex-col gap-12">
-        <div className="flex flex-col gap-space-xs">
-          <Eyebrow>Institutional Recall</Eyebrow>
-          <h2 className="font-display-lg text-[32px] sm:text-[46px] leading-tight tracking-tight text-on-surface font-semibold">EVERY INCIDENT MAKES THE NEXT ONE EASIER.</h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-          <div className="p-6 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
-            <div>
-              <span className="font-label-caps text-label-caps uppercase text-on-surface-variant font-semibold block mb-4">Input Memory Sources</span>
-              <ul className="flex flex-col gap-2.5 font-label-code text-label-code text-on-surface">
-                {MEMORY_SOURCES.map((source) => (
-                  <li key={source} className="p-2.5 rounded bg-surface-container-low">
-                    {source}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <span className="font-label-code text-xs text-on-surface-variant pt-4">Indexed as articles are published</span>
-          </div>
-
-          <div className="p-6 rounded-2xl bg-primary text-on-primary shadow-md flex flex-col justify-between">
-            <div>
-              <span className="font-label-caps text-label-caps uppercase text-primary-fixed font-semibold block mb-4">Nexa Semantic Graph</span>
-              <div className="flex flex-col gap-3 font-body-sm text-body-sm text-slate-200">
-                <p>Indexes knowledge articles and resolution workflows, and links new tickets to similar past incidents.</p>
-                <p>Resolved incidents become searchable evidence for the next investigation.</p>
-              </div>
-            </div>
-            <div className="pt-4 border-t border-slate-800">
-              <span className="font-label-code text-xs text-tertiary-fixed">Dynamic context synthesis active</span>
-            </div>
-          </div>
-
-          <div className="p-6 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
-            <div>
-              <span className="font-label-caps text-label-caps uppercase text-on-surface-variant font-semibold block mb-4">Immediate Payoff</span>
-              <ul className="flex flex-col gap-2.5 font-body-sm text-body-sm text-on-surface">
-                {PAYOFFS.map((payoff) => (
-                  <li key={payoff} className="p-2.5 rounded bg-surface-container-low">
-                    {payoff}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <span className="font-label-code text-xs text-on-surface-variant pt-4">Resolution summaries drafted for review</span>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ── 10. One intelligence layer (dark) ────────────────────────────────────────
-
-const PIPELINE = [
-  { label: "Employee", className: "bg-[#1e293b] text-white" },
-  { label: "AI Assistant", className: "bg-secondary/30 text-secondary-fixed font-medium" },
-  { label: "AI Triage", className: "bg-secondary/30 text-secondary-fixed font-medium" },
-  { label: "AI Diagnosis", className: "bg-secondary/30 text-secondary-fixed font-medium" },
-  { label: "Resolution Plan", className: "bg-white text-black font-semibold" },
-  { label: "Engineer", className: "bg-[#1e293b] text-white" },
-  { label: "Resolved", className: "bg-[#069669]/30 text-[#85f8c4]" },
+const COMPARISON: { label: string; nexa: string; servicenow: string; salesforce: string }[] = [
+  {
+    label: "Built around",
+    nexa: "AI investigation from the employee's first message",
+    servicenow: "A broad enterprise workflow platform, with AI added through Now Assist",
+    salesforce: "The Salesforce CRM platform, with IT service through Agentforce",
+  },
+  {
+    label: "How employees ask for help",
+    nexa: "Plain-language chat — no forms or category pickers",
+    servicenow: "Service portal and catalog forms, plus a virtual agent",
+    salesforce: "Service portal and forms, plus Agentforce agents",
+  },
+  {
+    label: "Diagnosis evidence",
+    nexa: "Every diagnosis cites the articles and past incidents it used; unverified evidence lowers confidence",
+    servicenow: "Depends on configuration",
+    salesforce: "Depends on configuration",
+  },
+  {
+    label: "AI acting on infrastructure",
+    nexa: "Never — engineers execute every step, enforced down to the database",
+    servicenow: "Configurable automation and agent actions",
+    salesforce: "Configurable automation and agent actions",
+  },
+  {
+    label: "Getting started",
+    nexa: "Teams, routing rules and a knowledge base — ready the same day",
+    servicenow: "Typically an implementation project",
+    salesforce: "Configured on the Salesforce platform",
+  },
+  {
+    label: "Best fit",
+    nexa: "Teams that want AI triage without a platform rollout",
+    servicenow: "Large enterprises standardising on one platform",
+    salesforce: "Organisations already running on Salesforce",
+  },
 ];
 
-const MODULES = ["Incidents", "Service Requests", "Knowledge", "Services & Assets", "Changes", "SLA Policies"];
-
-function PlatformSection() {
+function ComparisonSection() {
   return (
-    <section id="product" data-nav-dark className="w-full py-28 lg:py-36 px-margin bg-[#070b14] text-white scroll-mt-16">
-      <div className="max-w-7xl mx-auto flex flex-col items-center text-center gap-12">
-        <div className="flex flex-col items-center gap-3 max-w-3xl">
-          <Eyebrow className="text-secondary-fixed">Unified Operating System</Eyebrow>
-          <h2 className="font-display-lg text-[40px] sm:text-[60px] leading-[1.02] tracking-tight font-semibold text-white">ONE INTELLIGENCE LAYER FOR IT.</h2>
-          <p className="font-body-md text-body-md text-[#bec6e0] max-w-xl">
-            An end-to-end incident pipeline replacing fragmented ticketing tools, manual Slack triage channels, and dead runbooks.
+    <section id="compare" className="relative isolate w-full py-28 px-margin bg-surface scroll-mt-16 overflow-hidden">
+      <Aurora />
+      <div className="max-w-6xl mx-auto flex flex-col gap-12">
+        <div className="flex flex-col gap-space-sm max-w-3xl">
+          <Eyebrow>Why Nexa</Eyebrow>
+          <h2 className="font-display-lg text-[36px] sm:text-[50px] leading-tight tracking-tight text-on-surface font-semibold">BUILT AI-FIRST, NOT AI-ADDED.</h2>
+          <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+            ServiceNow and Salesforce are powerful platforms. Nexa takes a narrower, sharper path: an AI that investigates first, and engineers who stay in charge.
           </p>
         </div>
-        <div className="w-full p-8 sm:p-12 rounded-2xl bg-[#0f172a]/70 border border-[#1e293b] flex flex-col gap-10">
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm font-label-code">
-            {PIPELINE.map((stage, i) => (
-              <Fragment key={stage.label}>
-                {i > 0 && (
-                  <span aria-hidden="true" className="text-secondary-fixed">
-                    →
-                  </span>
-                )}
-                <span className={clsx("px-3 py-1.5 rounded", stage.className)}>{stage.label}</span>
-              </Fragment>
-            ))}
+        <Reveal>
+          <div className="nx-depth overflow-x-auto rounded-2xl bg-surface-container-lowest">
+            <table className="w-full min-w-[760px] border-collapse text-left">
+              <thead>
+                <tr className="border-b border-surface-container-high">
+                  <th className="w-[22%] p-5" />
+                  <th className="w-[26%] p-5 align-bottom">
+                    <div className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-br from-[#eef2ff] to-[#ecfeff] px-3 py-2 shadow-[0_10px_30px_-14px_rgba(79,70,229,0.6)]">
+                      <NexaMark size={24} />
+                      <span className="font-headline-sm text-headline-sm font-semibold text-on-surface">Nexa</span>
+                    </div>
+                  </th>
+                  <th className="w-[26%] p-5 align-bottom">
+                    <span className="font-headline-sm text-headline-sm font-semibold tracking-tight text-[#293e40]">servicenow</span>
+                  </th>
+                  <th className="w-[26%] p-5 align-bottom">
+                    <span className="inline-flex items-center gap-2">
+                      <img src={SALESFORCE_LOGO} alt="" aria-hidden="true" className="h-7 w-auto [filter:invert(48%)_sepia(79%)_saturate(2476%)_hue-rotate(176deg)_brightness(96%)_contrast(101%)]" />
+                      <span className="font-headline-sm text-headline-sm font-semibold text-on-surface">Salesforce</span>
+                    </span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {COMPARISON.map((row) => (
+                  <tr key={row.label} className="border-b border-surface-container-high last:border-0">
+                    <th scope="row" className="p-5 align-top font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant">{row.label}</th>
+                    <td className="bg-[#eef2ff]/50 p-5 align-top font-body-md text-body-md font-medium text-on-surface">
+                      <span className="flex gap-2"><Icon name="check_circle" className="mt-0.5 text-[18px] text-secondary" />{row.nexa}</span>
+                    </td>
+                    <td className="p-5 align-top font-body-md text-body-md text-on-surface-variant">{row.servicenow}</td>
+                    <td className="p-5 align-top font-body-md text-body-md text-on-surface-variant">{row.salesforce}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-          <ul className="flex flex-wrap items-center justify-center gap-3 pt-6 border-t border-[#1e293b]/80">
-            {MODULES.map((module) => (
-              <li key={module} className="font-label-code text-xs px-3 py-1 rounded-full bg-[#131b2e] text-[#bec6e0]">
-                {module}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ── 11. Capabilities ─────────────────────────────────────────────────────────
-
-const CAPABILITIES = [
-  { icon: "troubleshoot", title: "Incident Management", body: "Real-time incident lifecycle management without slow status updates or lost tickets." },
-  { icon: "auto_awesome", title: "AI Triage & Classification", body: "Automatic categorization and severity tagging, with explainable confidence and rule-based routing." },
-  { icon: "auto_stories", title: "Knowledge Synthesis", body: "Transforms knowledge base articles and past resolved tickets into dynamic, contextual diagnostic runbooks." },
-  { icon: "checklist", title: "Service Requests", body: "Access and hardware requests in plain language, routed to the right team." },
-  { icon: "lan", title: "Escalation Handshake", body: "Seamless multi-tier escalation retaining all logs, hypotheses, and notes so senior engineers skip initial triage." },
-  { icon: "database", title: "Services & Assets", body: "A lightweight service catalogue and asset register the AI uses as investigation context." },
-];
-
-function CapabilitiesSection() {
-  return (
-    <section className="w-full py-28 px-margin bg-surface">
-      <div className="max-w-7xl mx-auto flex flex-col gap-14">
-        <div className="flex flex-col gap-2">
-          <Eyebrow>Capabilities</Eyebrow>
-          <h2 className="font-headline-lg text-[32px] sm:text-[40px] leading-tight tracking-tight text-on-surface font-semibold">EVERYTHING YOUR IT TEAM NEEDS.</h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {CAPABILITIES.map((capability, i) => (
-            <Reveal key={capability.title} delay={i * 70}>
-            <div className="h-full p-6 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-3 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_60px_-20px_rgba(11,28,48,0.25)]">
-              <Icon name={capability.icon} className="text-secondary text-[24px]" />
-              <h3 className="font-headline-sm text-headline-sm text-on-surface font-semibold">{capability.title}</h3>
-              <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">{capability.body}</p>
-            </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ── 12. Operations ───────────────────────────────────────────────────────────
-
-const QUEUE = [
-  {
-    priority: "P1",
-    priorityClass: "bg-error-container text-error",
-    title: "Stripe Webhook Gateway Timeout",
-    meta: "Payments team · AI generated 3-step roll-back plan",
-    action: "Review Plan →",
-    actionClass: "bg-primary text-on-primary",
-  },
-  {
-    priority: "P2",
-    priorityClass: "bg-surface-container-high text-on-surface",
-    title: "GlobalProtect Handshake Failure",
-    meta: "Assigned to Rahul S. · Root Cert Expiration verified",
-    action: "Resume",
-    actionClass: "bg-surface-container-lowest text-on-surface",
-  },
-  {
-    priority: "P3",
-    priorityClass: "bg-surface-container-high text-on-surface",
-    title: "Exchange Sync Latency on iOS Client",
-    meta: "Diagnostics gathered · Waiting on engineer",
-    action: "Open",
-    actionClass: "bg-surface-container-lowest text-on-surface",
-  },
-];
-
-function OperationsSection() {
-  return (
-    <section className="w-full py-24 px-margin bg-surface-container-low/40">
-      <div className="max-w-6xl mx-auto flex flex-col gap-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div>
-            <Eyebrow className="text-secondary block mb-2">Operational Focus</Eyebrow>
-            <h2 className="font-headline-lg text-[32px] sm:text-[40px] leading-tight tracking-tight text-on-surface font-semibold">KNOW WHAT NEEDS YOUR ATTENTION.</h2>
-          </div>
-          <p className="font-body-md text-body-md text-on-surface-variant max-w-md">
-            Nexa surfaces the work that matters instead of forcing engineers to sift through overwhelming backlogs.
-          </p>
-        </div>
-
-        {/* Focused queue preview */}
-        <div className="p-6 sm:p-8 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col gap-4">
-          <div className="flex items-center justify-between gap-3 pb-3 border-b border-surface-container-high">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-error" />
-              <span className="font-label-caps text-label-caps font-semibold uppercase text-on-surface tracking-wider">Needs Your Attention · 3 Active</span>
-            </div>
-            <span className="font-label-code text-xs text-on-surface-variant">Live Dispatch View</span>
-          </div>
-          <ul className="flex flex-col gap-4">
-            {QUEUE.map((ticket) => (
-              <li
-                key={ticket.title}
-                className="p-4 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-4"
-              >
-                <div className="flex items-center gap-4">
-                  <span className={clsx("px-2 py-0.5 rounded font-label-code text-xs font-semibold", ticket.priorityClass)}>{ticket.priority}</span>
-                  <div>
-                    <span className="font-body-md text-body-md text-on-surface font-medium block">{ticket.title}</span>
-                    <span className="font-body-sm text-body-sm text-on-surface-variant">{ticket.meta}</span>
-                  </div>
-                </div>
-                <MockButton className={clsx("h-8 px-3 rounded font-body-sm text-body-sm font-medium self-start sm:self-center", ticket.actionClass)}>{ticket.action}</MockButton>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ── 13. AI settings & guardrails ─────────────────────────────────────────────
-
-const ON = "bg-tertiary-container text-on-tertiary-container";
-
-const POLICIES = [
-  { title: "AI Triage & Categorization", description: "Automatically parse employee prompts and assign priority tags", status: "ACTIVE · ON", tone: ON },
-  { title: "AI Root Cause Diagnosis", description: "Search knowledge and incident history to formulate causal hypotheses", status: "ACTIVE · ON", tone: ON },
-  { title: "Dynamic Resolution Plans", description: "Synthesize interactive check-lists from historical resolutions", status: "ACTIVE · ON", tone: ON },
-  {
-    title: "Direct Infrastructure Mutation",
-    description: "Autonomous API writes to production DNS, IAM, or cloud infrastructure",
-    status: "BLOCKED · OFF",
-    tone: "bg-error-container text-error",
-  },
-  {
-    title: "Human Verification Mandate",
-    description: "Require engineer sign-off on remediation actions",
-    status: "ENFORCED",
-    tone: "bg-secondary-container text-on-secondary-container",
-  },
-];
-
-function GuardrailsSection() {
-  return (
-    <section className="w-full py-24 px-margin bg-surface">
-      <div className="max-w-5xl mx-auto flex flex-col gap-10">
-        <div className="flex flex-col gap-2">
-          <Eyebrow>Safety &amp; Policies</Eyebrow>
-          <h2 className="font-headline-lg text-[32px] sm:text-[38px] leading-tight tracking-tight text-on-surface font-semibold">INTELLIGENCE WITHOUT LOSING CONTROL.</h2>
-          <p className="font-body-md text-body-md text-on-surface-variant max-w-xl">Granular permission policies ensure AI assistance stays within strict enterprise boundaries.</p>
-        </div>
-
-        {/* Policy matrix preview */}
-        <ul className="p-6 sm:p-8 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col gap-4">
-          {POLICIES.map((policy, i) => (
-            <li key={policy.title} className={clsx("flex items-center justify-between gap-4 py-3", i < POLICIES.length - 1 && "border-b border-surface-container-high")}>
-              <div>
-                <span className="font-body-md text-body-md font-medium text-on-surface block">{policy.title}</span>
-                <span className="font-body-sm text-body-sm text-on-surface-variant">{policy.description}</span>
-              </div>
-              <span className={clsx("shrink-0 px-3 py-1 rounded-full font-label-code text-xs font-bold", policy.tone)}>{policy.status}</span>
-            </li>
-          ))}
-        </ul>
+        </Reveal>
+        <p className="font-label-code text-[11px] text-on-surface-variant/70">
+          Based on publicly available product information as of 2026. ServiceNow, Now Assist, Salesforce and Agentforce are trademarks of their respective owners; Nexa is not affiliated with or endorsed by them.
+        </p>
       </div>
     </section>
   );
@@ -1045,13 +752,12 @@ const FOOTER_COLUMNS: { heading: string; links: FooterLink[] }[] = [
   {
     heading: "Platform",
     links: [
-      { label: "Product", href: "#product" },
-      { label: "Architecture", href: "#how-it-works" },
-      { label: "Incident Triage", href: "#engineers" },
+      { label: "How it works", href: "#horizon" },
+      { label: "For employees", href: "#employees" },
+      { label: "For engineers", href: "#engineers" },
     ],
   },
-  { heading: "Resources", links: [{ label: "Runbooks", href: "#knowledge" }] },
-  {
+    {
     heading: "Access",
     links: [
       { label: "Sign in", to: "/login" },
@@ -1134,17 +840,11 @@ export default function LandingPage() {
           <Hero />
           <ShiftSection />
           <Horizon />
-          <HowItWorksSection />
           <EmployeeSection />
           <EngineerSection />
           <HumanInTheLoopSection />
-          <ResolutionPlanSection />
           <EscalationSection />
-          <KnowledgeSection />
-          <PlatformSection />
-          <CapabilitiesSection />
-          <OperationsSection />
-          <GuardrailsSection />
+          <ComparisonSection />
           <FinalCtaSection />
         </div>
       </main>

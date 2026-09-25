@@ -103,7 +103,7 @@ export function Horizon() {
   const active = Math.min(HORIZON_WORDS.length - 1, Math.floor(progress * HORIZON_WORDS.length));
   const rise = reducedMotion() ? 1 : Math.min(1, progress * 2.2);
   return (
-    <section ref={ref} data-nav-dark className="relative h-[260vh] bg-[#05070d]" aria-label="How Nexa works">
+    <section ref={ref} id="horizon" data-nav-dark className="relative h-[260vh] bg-[#05070d]" aria-label="How Nexa works">
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
         {/* Horizon arc + glow rising with scroll */}
         <div
