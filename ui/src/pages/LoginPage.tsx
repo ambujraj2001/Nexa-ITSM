@@ -39,13 +39,19 @@ function MicrosoftLogo() {
 }
 
 function ApiStatus() {
-  const health = useQuery({ queryKey: ["health"], queryFn: api.health, retry: false, refetchInterval: 60_000 });
+  const health = useQuery({
+    queryKey: ["health"],
+    queryFn: api.health,
+    retry: false,
+    // Poll every 2s while the API is asleep/unreachable (Render free tier), then every minute.
+    refetchInterval: (query) => (query.state.status === "error" || query.state.data?.status !== "ok" ? 2000 : 60_000),
+  });
   const ok = health.data?.status === "ok";
   return (
     <div className="mt-space-md flex items-center gap-2">
       <span className={clsx("inline-block h-1.5 w-1.5 rounded-full", health.isLoading ? "bg-outline-variant" : ok ? "animate-pulse bg-on-tertiary-container" : "bg-[#D97706]")} />
       <span className="font-label-code text-[11px] text-label-code text-outline">
-        {health.isLoading ? "Checking Nexa API…" : ok ? "Nexa API: operational" : "Nexa API: unreachable"}
+        {health.isLoading ? "Checking Nexa API…" : ok ? "Nexa API: operational" : "Nexa API: waking up…"}
       </span>
     </div>
   );

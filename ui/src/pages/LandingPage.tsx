@@ -773,12 +773,18 @@ const API_STATUS: Record<ApiState, { dot: string; label: string }> = {
   checking: { dot: "bg-outline", label: "Checking status…" },
   operational: { dot: "bg-on-tertiary-container", label: "API operational" },
   degraded: { dot: "bg-amber-500", label: "API degraded" },
-  unreachable: { dot: "bg-amber-500", label: "API unreachable" },
+  unreachable: { dot: "bg-amber-500 animate-pulse", label: "Waking up the API…" },
 };
 
 /** Live status of the Nexa API, from the public /health endpoint. */
 function ApiStatus() {
-  const { status, data } = useQuery({ queryKey: ["health"], queryFn: api.health, retry: false });
+  // Render's free tier sleeps when idle: keep checking every 2s until the API is up, then stop.
+  const { status, data } = useQuery({
+    queryKey: ["health"],
+    queryFn: api.health,
+    retry: false,
+    refetchInterval: (query) => (query.state.status === "error" || query.state.data?.status !== "ok" ? 2000 : false),
+  });
   const state: ApiState = status === "pending" ? "checking" : status === "error" ? "unreachable" : data?.status === "ok" ? "operational" : "degraded";
   const { dot, label } = API_STATUS[state];
   return (
